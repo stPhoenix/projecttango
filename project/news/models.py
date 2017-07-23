@@ -8,4 +8,4 @@ class Article(models.Model):
     title = models.CharField(max_length=TITLE_MAX_LENGTH)
     pub_date = models.DateTimeField()
     article_text = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to='article_images/')
