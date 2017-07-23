@@ -9,3 +9,4 @@ class Article(models.Model):
     pub_date = models.DateTimeField()
     article_text = models.TextField()
     image = models.ImageField(upload_to='article_images/')
+# //TODO: Add meta model, category model
