@@ -20,5 +20,5 @@ from news import views  # Django freaks because no top level import like from ..
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^news/', include('news.urls')),
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.Index.as_view(), name='index')
 ]

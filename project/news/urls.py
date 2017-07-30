@@ -18,5 +18,5 @@ from . import views
 
 app_name = 'news'
 urlpatterns = [
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.Index.as_view(), name='index')
 ]
