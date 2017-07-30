@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from news import views
+from news import views  # Django freaks because no top level import like from ../news import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

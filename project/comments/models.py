@@ -1,5 +1,5 @@
 from django.db import models
-from news.models import Article
+from news.models import Article # Django freaks because no top level import like from ../news import
 # Create your models here.
 
 
