@@ -6,12 +6,6 @@ from .models import Article
 # Create your views here.
 
 
-def index(request):
-    news = Article.objects.all()
-    response = ["Tile: %s <br> Publication date %s <br>" % (n.title, n.pub_date)for n in news]
-    return HttpResponse("<h1>NEWS</h1> <br>"+"".join(response))
-
-
 class Index(generic.ListView):
 
     model = Article
