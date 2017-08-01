@@ -8,3 +8,6 @@ class Comment(models.Model):
     comment_text = models.TextField(max_length=300)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     pub_date = models.TimeField()
+
+    def __str__(self):
+        return '\n Author: %s \n Publication Date: %s \n Comment: %s ' % (self.author, self.pub_date, self.comment_text)

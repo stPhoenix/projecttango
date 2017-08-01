@@ -9,10 +9,11 @@ class Article(models.Model):
     pub_date = models.DateTimeField()
     article_text = models.TextField()
     image = models.ImageField(upload_to='article_images/')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Title: %s \n Publication date: %s \n Text: %s \n Image: %s"%(self.title, self.pub_date,
-                                                                             self.article_text, self.image.url)
+        return "\n Title: %s \n Publication date: %s \n Text: %s \n Image: %s" % (self.title, self.pub_date,
+                                                                                  self.article_text, self.image.url)
 
 
 class Tags(models.Model):
@@ -22,4 +23,3 @@ class Tags(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=60)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 from .models import Article
+from comments.models import Comment
 
 # Create your views here.
 
@@ -24,3 +25,8 @@ class Detail(generic.DetailView):
     model = Article
     template_name = "news/detail.html"
     context_object_name = "article"
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(Detail, self).get_context_data(**kwargs)
+    #     context['comments'] = context['article'].comment_set.all()
+    #     return context
