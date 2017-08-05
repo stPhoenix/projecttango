@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from news import views  # Django freaks because no top level import like from ../news import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^news/', include('news.urls')),
-    url(r'^$', views.Index.as_view(), name='index')
+    url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^login/$', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]

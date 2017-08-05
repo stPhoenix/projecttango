@@ -12,6 +12,7 @@
     <br> <label for="comment_text"> Text</label> <input id="comment_text" type="text" name="comment_text">
 <br> <input type="submit" value="Send" />
 </form>
+<br> <h3>{{error_message}}</h3>
 <br> <h2> Comments({{article.comment_set.count}})</h2>
 <br><ul>
     {% for comment in article.comment_set.all %}
