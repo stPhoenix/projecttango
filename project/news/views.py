@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.views import generic
 from .models import Article
 from django.db import Error
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -37,16 +38,17 @@ class Detail(generic.DetailView):
     #     return context
 
 
+@login_required
 def add_comment(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
-    if request.POST['author'] == '' or request.POST['comment_text'] == '':
+    if request.POST['comment_text'] == '':
         return render(request, 'news/detail.html', {
             'article': article,
-            'error_message': "You didn't enter author\\text.",
+            'error_message': "You didn't enter text.",
         })
     else:
         try:
-            article.comment_set.create(author=request.POST['author'], comment_text=request.POST['comment_text'],
+            article.comment_set.create(author=request.user.username, comment_text=request.POST['comment_text'],
                                        pub_date=timezone.now())
             article.save()
             return HttpResponseRedirect(reverse('news:detail', args=(article_id,)))

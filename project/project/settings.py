@@ -141,6 +141,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.vk.VKOAuth2'
 )
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -158,3 +160,7 @@ LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/news/'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '187999603041-n0slqbu95g0p8lbshhsvs87450rhtalk.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NkhvElItYOlXy6z5CeXbblhS'
+SOCIAL_AUTH_FACEBOOK_KEY = '1758737571089959'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'a35c7404f42662b63d6794ea9fe24c3f'  # App Secret
+SOCIAL_AUTH_VK_KEY = 'fa7SUuXF6RkNO0NrtkKq'  # App ID
+SOCIAL_AUTH_VK_SECRET = '44ba602844ba602844ba6028c844e7db31444ba44ba60281d309aa6ad594394f01e9da6'  # App Secret

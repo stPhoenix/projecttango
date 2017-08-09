@@ -8,7 +8,6 @@
 <br> Add comment:
 <form action="{% url 'news:add_comment' article.id %}" method="post">
 {% csrf_token %}
-<br> <label for="author" >Author</label> <input id="author" type="text" name="author">
     <br> <label for="comment_text"> Text</label> <input id="comment_text" type="text" name="comment_text">
 <br> <input type="submit" value="Send" />
 </form>

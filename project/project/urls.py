@@ -21,6 +21,7 @@ from news import views  # Django freaks because no top level import like from ..
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^news/', include('news.urls')),
+    url(r'^account/', include('account.urls')),
     url(r'^$', views.Index.as_view(), name='index'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
