@@ -18,5 +18,5 @@ from . import views
 
 app_name = 'account'
 urlpatterns = [
-    url(r'^settings/', views.Settings.as_view(), name='settings'),
+    url(r'^settings/(?P<pk>[0-9]+)/$', views.Settings.as_view(), name='settings'),
 ]

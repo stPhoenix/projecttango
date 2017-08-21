@@ -1,6 +1,6 @@
 <h1> News</h1>
 {% if user.is_authenticated %}
-<br> <h3> Hello {{user.username}} ! </h3>
+<br> <h3> Hello {{user.username}} !  Your id is {{user.pk}}</h3>
 {% endif %}
 <ul>
 {% for article in articles.all %}

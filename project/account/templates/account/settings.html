@@ -1,0 +1,57 @@
+{% if user.is_authenticated %}
+<br> Avatar:
+<br> <image src="{{ user.avatar.url}}"></image>
+<br> <form action="" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" value="Send">Send</button>
+</form>
+<h3>Google</h3>
+  {% if google_login %}
+    <p>Connected as <a href="https://plus.google.com/u/0/{{ google_login.extra_data.login }}/" target="_blank">{{ google_login.extra_data.login }}</a></p>
+    {% if can_disconnect %}
+      <form method="post" action="{% url 'social:disconnect' 'google-oauth2' %}">
+        {% csrf_token %}
+        <button type="submit">Disconnect from Google</button>
+      </form>
+    {% else %}
+      <button type="button" disabled>Disconnect from Googleb</button>
+      <p style="color: red">You must <a href="#">define a password</a> for your account before disconnecting from Google.</p>
+    {% endif %}
+  {% else %}
+    <a href="{% url 'social:begin' 'google-oauth2' %}">Connect to Google</a>
+  {% endif %}
+
+  <h3>Vk</h3>
+  {% if vk_login %}
+    <p>Connected as <a href="https://vk.com/{{ vk_login.extra_data.access_token.screen_name }}/" target="_blank">{{ vk_login.extra_data.access_token.screen_name }}</a></p>
+    {% if can_disconnect %}
+      <form method="post" action="{% url 'social:disconnect' 'vk-oauth2' %}">
+        {% csrf_token %}
+        <button type="submit">Disconnect from Vk</button>
+      </form>
+    {% else %}
+      <button type="button" disabled>Disconnect from Vk</button>
+      <p style="color: red">You must <a href="#">define a password</a> for your account before disconnecting from Vk.</p>
+    {% endif %}
+  {% else %}
+    <a href="{% url 'social:begin' 'vk-oauh2' %}">Connect to Vk</a>
+  {% endif %}
+
+  <h3>Facebook</h3>
+  {% if facebook_login %}
+    <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
+    {% if can_disconnect %}
+      <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
+        {% csrf_token %}
+        <button type="submit">Disconnect from Facebook</button>
+      </form>
+    {% else %}
+      <button type="button" disabled>Disconnect from Facebook</button>
+      <p style="color: red">You must <a href="#">define a password</a> for your account before disconnecting from Facebook.</p>
+    {% endif %}
+  {% else %}
+    <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+  {% endif %}
+
+{% endif %}
