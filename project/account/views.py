@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -7,6 +6,11 @@ from django.urls import reverse
 from django.db.models import ObjectDoesNotExist
 from .forms import SettingsAccountForm
 from social_django.models import UserSocialAuth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -50,5 +54,26 @@ class Settings(LoginRequiredMixin, generic.UpdateView):
     def form_invalid(self, form):
         print('Form is invalid')
         return super(Settings, self).form_invalid(form)
+
+
+@login_required
+def password(request):
+    if request.user.has_usable_password():
+        passwordform = PasswordChangeForm
+    else:
+        passwordform = AdminPasswordChangeForm
+
+    if request.method == 'POST':
+        form = passwordform(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('account:password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = passwordform(request.user)
+    return render(request, 'account/password.html', {'form': form})
 
 

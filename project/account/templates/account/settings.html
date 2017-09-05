@@ -16,7 +16,7 @@
       </form>
     {% else %}
       <button type="button" disabled>Disconnect from Googleb</button>
-      <p style="color: red">You must <a href="#">define a password</a> for your account before disconnecting from Google.</p>
+      <p style="color: red">You must <a href="{% url 'account:password' %}">define a password</a> for your account before disconnecting from Google.</p>
     {% endif %}
   {% else %}
     <a href="{% url 'social:begin' 'google-oauth2' %}">Connect to Google</a>
@@ -32,7 +32,7 @@
       </form>
     {% else %}
       <button type="button" disabled>Disconnect from Vk</button>
-      <p style="color: red">You must <a href="#">define a password</a> for your account before disconnecting from Vk.</p>
+      <p style="color: red">You must <a href="{% url 'account:password' %}">define a password</a> for your account before disconnecting from Vk.</p>
     {% endif %}
   {% else %}
     <a href="{% url 'social:begin' 'vk-oauh2' %}">Connect to Vk</a>
@@ -48,7 +48,7 @@
       </form>
     {% else %}
       <button type="button" disabled>Disconnect from Facebook</button>
-      <p style="color: red">You must <a href="#">define a password</a> for your account before disconnecting from Facebook.</p>
+      <p style="color: red">You must <a href="{% url 'account:password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
     {% endif %}
   {% else %}
     <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
