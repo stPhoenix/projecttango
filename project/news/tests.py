@@ -16,3 +16,4 @@ class IndexTest(TestCase):
         rendered_html = render_to_string('news/index.html')
         self.assertEqual(200, response.status_code)
         self.assertHTMLEqual(response.content.decode(), rendered_html)
+        self.assertTemplateUsed(response, 'news/index.html')
