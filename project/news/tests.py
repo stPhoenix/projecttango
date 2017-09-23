@@ -38,3 +38,7 @@ class DetailTest(TestCase):
         response = self.client.get('/news/1/')
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, 'news/detail.html')
+        self.assertContains(response, 'Test article')
+        self.assertContains(response, 'test category')
+        self.assertContains(response, 'Text for test article')
+        self.assertContains(response, 'None.img')
