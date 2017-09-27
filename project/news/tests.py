@@ -57,13 +57,17 @@ class CommentingTest(TestCase):
                                               image='None.img',
                                               category=category)
         self.article.save()
+        self.client.login(username='jacob', password='top_secret')
 
     def test_commenting(self):
-        self.client.login(username='jacob', password='top_secret')
         request = self.client.post('/news/%s/add_comment' % self.article.pk, {'comment_text': 'test comment'}, follow=True)
         self.assertEqual(request.status_code, 200)
         self.assertContains(request, 'test comment')
 
+    def test_void_text_comment(self):
+        request = self.client.post('/news/%s/add_comment' % self.article.pk, {'comment_text': ''}, follow=True)
+        self.assertEqual(request.status_code, 200)
+        self.assertContains(request, "You didn't enter text.")
 
 
 
