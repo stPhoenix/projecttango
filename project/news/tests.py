@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.template.loader import render_to_string
 from django.utils import timezone
-from django.contrib.auth.models import AnonymousUser
+from account.models import Account
 from django.shortcuts import render
 #from news.views import Index
 from .views import Index
@@ -23,20 +23,20 @@ class IndexTest(TestCase):
 
 
 class DetailTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        super(DetailTest, cls).setUpTestData()
+    def setUp(self):
         category = Category.objects.create(name='test category')
         category.save()
-        article = Article.objects.create(title='Test article',
-                                         pub_date=timezone.now(),
-                                         article_text='Text for test article',
-                                         image='None.img',
-                                         category=category)
-        article.save()
+        self.article = Article.objects.create(title='Test article',
+                                              pub_date=timezone.now(),
+                                              article_text='Text for test article',
+                                              image='None.img',
+                                              category=category)
+        self.article.save()
 
     def test_detail_page(self):
-        response = self.client.get('/news/1/')
+        response = self.client.get('/news/%s/' % self.article.pk)
+        print(response.content.decode())
+        print('Article pk: %s' % self.article.pk)
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, 'news/detail.html')
         self.assertContains(response, 'Test article')
@@ -46,21 +46,24 @@ class DetailTest(TestCase):
 
 
 class CommentingTest(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
+    def setUp(self):
+        user = Account.objects.create_user(
+            username='jacob', email='jacob@mail.com', password='top_secret')
         category = Category.objects.create(name='test category')
         category.save()
-        article = Article.objects.create(title='Test article',
-                                         pub_date=timezone.now(),
-                                         article_text='Text for test article',
-                                         image='None.img',
-                                         category=category)
-        article.save()
+        self.article = Article.objects.create(title='Test article',
+                                              pub_date=timezone.now(),
+                                              article_text='Text for test article',
+                                              image='None.img',
+                                              category=category)
+        self.article.save()
 
     def test_commenting(self):
-        request = self.client.post('/news/1/add_comment', {'comment_text': 'test comment'}, follow=True)
-        request.user = AnonymousUser
+        self.client.login(username='jacob', password='top_secret')
+        request = self.client.post('/news/%s/add_comment' % self.article.pk, {'comment_text': 'test comment'}, follow=True)
         self.assertEqual(request.status_code, 200)
         self.assertContains(request, 'test comment')
+
+
+
 
