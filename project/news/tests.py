@@ -35,8 +35,6 @@ class DetailTest(TestCase):
 
     def test_detail_page(self):
         response = self.client.get('/news/%s/' % self.article.pk)
-        print(response.content.decode())
-        print('Article pk: %s' % self.article.pk)
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, 'news/detail.html')
         self.assertContains(response, 'Test article')
@@ -67,7 +65,7 @@ class CommentingTest(TestCase):
     def test_void_text_comment(self):
         request = self.client.post('/news/%s/add_comment' % self.article.pk, {'comment_text': ''}, follow=True)
         self.assertEqual(request.status_code, 200)
-        self.assertContains(request, "You didn't enter text.")
+        self.assertContains(request, "You didn&#39;t enter text.")
 
 
 
