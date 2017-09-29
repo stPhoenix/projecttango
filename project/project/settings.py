@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_ry5-(hn%46^%24)t38-m20%r4x_pc+di6^dz4y5)i-88wpw0z'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -83,15 +84,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -158,12 +158,12 @@ SOCIAL_AUTH_PIPELINE = (
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/news/'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '187999603041-n0slqbu95g0p8lbshhsvs87450rhtalk.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NkhvElItYOlXy6z5CeXbblhS'
-SOCIAL_AUTH_FACEBOOK_KEY = '1758737571089959'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = 'a35c7404f42662b63d6794ea9fe24c3f'  # App Secret
-SOCIAL_AUTH_VK_KEY = 'fa7SUuXF6RkNO0NrtkKq'  # App ID
-SOCIAL_AUTH_VK_SECRET = '44ba602844ba602844ba6028c844e7db31444ba44ba60281d309aa6ad594394f01e9da6'  # App Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
+SOCIAL_AUTH_VK_KEY = config('SOCIAL_AUTH_VK_KEY')
+SOCIAL_AUTH_VK_SECRET = config('SOCIAL_AUTH_VK_SECRET')
 
 
 AUTH_USER_MODEL = 'account.Account'
