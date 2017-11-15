@@ -1,0 +1,19 @@
+@font-face {
+    font-family: LogoFont;
+    src: url('../fonts/Pollock3CTT.ttf');
+}
+@font-face {
+    font-family: TextFont;
+    src: url('../fonts/Agency-FB-Cyrillic.ttf');
+}
+body {
+  background-color: #f3f2f2;
+  color: #e40202;
+  font-family: TextFont;
+}
+a {
+  color: #e40202;
+}
+a:hover {
+  color: #a50404;
+}
