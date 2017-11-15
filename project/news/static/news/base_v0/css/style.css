@@ -17,3 +17,6 @@ a {
 a:hover {
   color: #a50404;
 }
+.border-bottom-line {
+    border-bottom: 2px solid #e40202;
+}
