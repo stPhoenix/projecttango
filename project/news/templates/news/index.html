@@ -1,18 +1,35 @@
-<h1> News</h1>
-{% if user.is_authenticated %}
-<br> <h3> Hello {{user.username}} !  Your id is {{user.pk}}</h3>
-{% endif %}
-<ul>
-{% for article in articles.all %}
-    <li>
-        <br> Title: {{article.title}}
-        <br> Publication date: {{article.pub_date}}
-        <br> Category: {{article.category.name}}
-        <br> Tags: {% for tag in article.tags_set.all %}
-        {{ tag.tag }}
-            {% endfor %}
-        <br> Comments: {{article.comment_set.count}}
-        <br> <a href="{% url 'news:detail' article.id %}">Read more</a>
-    </li>
-{% endfor %}
-</ul>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wigth, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News</title>
+    <link rel="stylesheet" href="{% static 'news/base_v1/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+    <h3>News</h3>
+    {% if user.is_authenticated %}
+        <br> <h3> Hello {{ user.username }} !  Your id is {{ user.pk }}</h3>
+        {% endif %}
+        <ul>
+        {% for article in articles.all %}
+            <li>
+                <br> Title: {{article.title}}
+                <br> Publication date: {{article.pub_date}}
+                <br> Category: {{article.category.name}}
+                <br> Tags: {% for tag in article.tags_set.all %}
+                {{ tag.tag }}
+                    {% endfor %}
+             <br> Comments: {{article.comment_set.count}}
+                <br> <a href="{% url 'news:detail' article.id %}">Read more</a>
+            </li>
+    {% endfor %}
+        </ul>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
