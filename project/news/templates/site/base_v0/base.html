@@ -15,7 +15,7 @@
     <title>Title</title>
 </head>
 <body>
-   <div class="container">
+ <div class="container">
     <div class="row justify-content-center">
       <div class="col-9 card">
         <section class="card-body">
@@ -26,7 +26,7 @@
               <h6 class="text-right pb-4">(game news)</h6>
             </section>
           </header>
-          <nav class="row">
+          <nav class="row" aria-label="Navigation">
             <section class="col-12 d-flex flex-nowrap">
               <ul class="nav d-flex mr-auto">
                 <li class="nav-item">
@@ -49,7 +49,8 @@
             </section>
           </nav>
           <main class="row justify-content-center">
-            <section class="col-8 d-flex align-items-center">
+            <section class="row justify-content-center">
+            <div class="col-8 d-flex align-items-center">
               <ul class="list-unstyled">
                 <li>
                   <article>
@@ -102,6 +103,26 @@
                   </article>
                 </li>
               </ul>
+            </div>
+            </section>
+            <section class="row">
+              <div class="col-12 align-items-center">
+                <nav aria-label="Pagination">
+                <ul class="pagination pagination-xsm border-bottom-line">
+                  <li class="page-item text-color-primary disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item "><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                 </ul>
+              </nav>
+              </div>
             </section>
           </main>
           <footer class="row">

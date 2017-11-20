@@ -45,3 +45,21 @@
     h1, h2, h3, h4, h5, h6{
       font-family: TextFont;
     }
+    .pagination-xsm .page-link {
+  		padding: 0.25rem 0.5rem;
+  		font-size: 0.575rem;
+  		line-height: 1.5;
+     }
+     .page-item.active .page-link {
+  		z-index: 2;
+  		color: #fff;
+  		background-color: #e40202;;
+  		border-color: #e40202;
+  }
+    .page-link{
+    	color: #e40202;}
+    	.page-link:focus, .page-link:hover {
+    		color: #a50404;
+    		text-decoration: none;
+    		background-color: #e9ecef;
+    		border-color: #ddd; }
