@@ -167,3 +167,6 @@ SOCIAL_AUTH_VK_SECRET = config('SOCIAL_AUTH_VK_SECRET')
 
 
 AUTH_USER_MODEL = 'account.Account'
+
+# Prefix for specific template using 
+TEMPLATE_PREFIX = 'base_v0'

@@ -1,0 +1,24 @@
+<h1> Detail {{article.title}}</h1>
+<br> Category: {{article.category.name}}
+<br> Tags: {% for tag in article.tags_set.all %}
+        {{ tag.tag }}
+            {% endfor %}
+<br> {{article.image.url}}
+<br> {{article.article_text}}
+<br> Add comment:
+<form action="{% url 'news:add_comment' article.id %}" method="post">
+{% csrf_token %}
+    <br> <label for="comment_text"> Text</label> <input id="comment_text" type="text" name="comment_text">
+<br> <input type="submit" value="Send" />
+</form>
+<br> <h3>{{error_message}}</h3>
+<br> <h2> Comments({{article.comment_set.count}})</h2>
+<br><ul>
+    {% for comment in article.comment_set.all %}
+    <li>
+        <br> Author: {{comment.author}}
+        <br> Publication Date: {{comment.pub_date}}
+        <br> Comment: {{comment.comment_text}}
+    </li>
+    {% endfor %}
+</ul>

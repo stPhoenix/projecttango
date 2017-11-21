@@ -8,7 +8,7 @@
       src: url('../fonts/Agency-FB-Cyrillic.ttf');
     }
 
-        body {
+    body {
       background-color: #f3f2f2;
       color: #e40202;
       font-family: TextFont;
@@ -46,9 +46,10 @@
       font-family: TextFont;
     }
     .pagination-xsm .page-link {
-  		padding: 0.25rem 0.5rem;
+  		padding: 0.25rem 0.5rem 0rem;
   		font-size: 0.575rem;
   		line-height: 1.5;
+      border: 0;
      }
      .page-item.active .page-link {
   		z-index: 2;

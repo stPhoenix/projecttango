@@ -6,6 +6,7 @@ from django.views import generic
 from .models import Article
 from django.db import Error
 from django.contrib.auth.decorators import login_required
+from project.settings import TEMPLATE_PREFIX as TP
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ class Index(generic.ListView):
 
     model = Article
     allow_empty = True
-    template_name = "news/index.html"
+    template_name = "news/"+TP+"/index.html"
     context_object_name = "articles"
 
     def get_queryset(self):
@@ -29,7 +30,7 @@ class Index(generic.ListView):
 class Detail(generic.DetailView):
 
     model = Article
-    template_name = "news/detail.html"
+    template_name = "news/"+TP+"/detail.html"
     context_object_name = "article"
 
     # def get_context_data(self, **kwargs):
@@ -42,7 +43,7 @@ class Detail(generic.DetailView):
 def add_comment(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     if request.POST['comment_text'] == '':
-        return render(request, 'news/detail.html', {
+        return render(request, 'news/'+TP+'/detail.html', {
             'article': article,
             'error_message': "You didn't enter text.",
         })
@@ -53,7 +54,7 @@ def add_comment(request, article_id):
             article.save()
             return HttpResponseRedirect(reverse('news:detail', args=(article_id,)))
         except Error:
-            return render(request, 'news/detail.html', {
+            return render(request, 'news/'+TP+'/detail.html', {
                 'article': article,
                 'error_message': "Can't add comment.",
             })

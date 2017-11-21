@@ -8,11 +8,12 @@
   <link rel="manifest" href="{% static 'news/base_v0/favicon/manifest.json' %}">
   <link rel="mask-icon" href="{% static 'news/base_v0/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
   <meta name="theme-color" content="#ffffff">
-  <!--> Add bootstrap<-->
+  <!-- Add bootstrap-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+   <link rel="stylesheet" href="{% static 'news/base_v0/css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+   <title> {% block title %} Home Page {% endblock %}</title> 
 </head>
 <body>
  <div class="container">
@@ -21,7 +22,7 @@
         <section class="card-body">
           <header class="row">
             <section class="col-12 d-flex align-items-center">
-              <img class="img-fluid width-10" src="ico.jpg" alt="logo image">
+              <img class="img-fluid width-10" src="{% static 'news/base_v0/ico.jpg' %}" alt="logo image">
               <h3 class="float-center align-middle logo-font">PROJECT T.A.N.G.O.</h3>
               <h6 class="text-right pb-4">(game news)</h6>
             </section>
@@ -45,10 +46,11 @@
                   <a href="#" class="border-bottom-line  px-1">LINK</a>
                 </li>
               </ul>
-              <h6 class="border-bottom-line padding-top px-3 mx-3 text-font">Welcome User</h6>
+              <h6 class="border-bottom-line padding-top px-3 mx-3 text-font">{% block userpanel %} Welcome User {% endblock %}</h6>
             </section>
           </nav>
           <main class="row justify-content-center">
+            {% block main %}
             <section class="row justify-content-center">
             <div class="col-8 d-flex align-items-center">
               <ul class="list-unstyled">
@@ -76,32 +78,6 @@
                       </div>
                     </section>
                   </article>
-                </li>
-                <li>
-                  <article>
-                    <section class="row justify-content-center">
-                      <div class="col-12 d-flex flex-nowrap justify-content-center">
-                        <h5 class="my-0 border-bottom-line px-4">NEWS TITLE NEWS TITLE NEWS TITLE NEWS TITLE NEWS TITLE NEWS TITLE</h5>
-                      </div>
-                    </section>
-                    <section class="row">
-                      <div class="col-12 d-flex flex-nowrap">
-                        <h6 class="p-1 pl-3 small">Category:xxxx</h6>
-                        <h6 class="p-1 small">Tags:xxxx</h6>
-                        <h6 class="p-1 small">Comments:xxxx</h6>
-                      </div>
-                    </section>
-                    <section class="row">
-                      <div class="col-12 d-flex px-4 mx-2">
-                        <img class="img-fluid align-self-start w-25 border-img" src="ico.jpg" alt="logo image">
-                        <p class="px-1">Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text  Text Text Text Text Text Text Text
-                             Text Text Text Text Text Text Text
-                          <a href="#">Continue read -></a>
-                        </p>
-                      </div>
-                    </section>
-                  </article>
-                </li>
               </ul>
             </div>
             </section>
@@ -124,6 +100,7 @@
               </nav>
               </div>
             </section>
+            {% endblock %}
           </main>
           <footer class="row">
             <section class="col-12 d-flex align-items-start">

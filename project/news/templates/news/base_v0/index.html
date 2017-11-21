@@ -1,0 +1,67 @@
+{% extends "../../site/base_v0/base.html" %}
+
+{% block title %} News Page {% endblock %}
+
+{% block userpanel %}
+  {% if user.is_authenticated %}
+    Welcome {{user.username}}
+  {% else %}
+    Welcome Guest
+  {% endif %}
+{% endblock %}
+
+{% block main %}
+            <section class="row justify-content-center">
+            <div class="col-8 d-flex align-items-center">
+              <ul class="list-unstyled">
+                {% for article in articles.all %}
+                <li>
+                  <article>
+                    <section class="row justify-content-center">
+                      <div class="col-12 d-flex flex-nowrap justify-content-center">
+                        <h5 class="my-0 border-bottom-line px-4">{{article.title}}</h5>
+                      </div>
+                    </section>
+                    <section class="row">
+                      <div class="col-12 d-flex flex-nowrap">
+                        <h6 class="p-1 pl-3 small">Category:{{article.category.name}}</h6>
+                        <h6 class="p-1 small">Tags:{% for tag in article.tags_set.all %}
+                                                     {{ tag.tag }}
+                                                   {% endfor %}</h6>
+                        <h6 class="p-1 small">Comments:{{article.comment_set.count}}</h6>
+                      </div>
+                    </section>
+                    <section class="row">
+                      <div class="col-12 d-flex px-4 mx-2">
+                        <img class="img-fluid align-self-start w-25 border-img" src="{{article.image.url}}" alt="logo image">
+                        <p class="px-1">{{article.article_text}}
+                          <a href="{% url 'news:detail' article.id %}">Continue read -></a>
+                        </p>
+                      </div>
+                    </section>
+                  </article>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            </section>
+            <section class="row">
+              <div class="col-12 align-items-center">
+                <nav aria-label="Pagination">
+                <ul class="pagination pagination-xsm border-bottom-line">
+                  <li class="page-item text-color-primary disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item "><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                 </ul>
+              </nav>
+              </div>
+            </section>
+            {% endblock %}
