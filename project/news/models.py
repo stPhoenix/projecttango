@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-TITLE_MAX_LENGTH = 6
+TITLE_MAX_LENGTH = 90
 
 
 class Category(models.Model):
