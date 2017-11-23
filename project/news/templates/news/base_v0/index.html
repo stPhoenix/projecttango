@@ -36,7 +36,7 @@
                       <div class="col-12 d-flex px-4 mx-2">
                         <img class="img-fluid align-self-start w-25 border-img" src="{{article.image.url}}" alt="logo image">
                         <p class="px-1">{{article.article_text|slice:"320"}}
-                           <a href="{% url 'news:detail' article.id %}"> Continue read -></a>
+                           <br> <a href="{% url 'news:detail' article.id %}"> Continue read -></a>
                         </p>
                       </div>
                     </section>
@@ -47,9 +47,9 @@
             </div>
             </section>
          {% if is_paginated %}
-            <section class="row justify-content-center">
-              <div class="col-12 align-items-center">
-                <nav aria-label="Pagination">
+            <section class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <nav aria-label="Pagination" >
                 <ul class="pagination pagination-xsm border-bottom-line">
                   <li class="page-item text-color-primary">
                     <a class="page-link" {% if articles.has_previous %}
