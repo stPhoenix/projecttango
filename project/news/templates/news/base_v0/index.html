@@ -28,14 +28,15 @@
                         <h6 class="p-1 small">Tags:{% for tag in article.tags_set.all %}
                                                      {{ tag.tag }}
                                                    {% endfor %}</h6>
-                        <h6 class="p-1 small">Comments:{{article.comment_set.count}}</h6>
+                        <h6 class="p-1 small mr-auto">Comments:{{article.comment_set.count}}</h6>
+                        <h6 class="p-1 pr-3 small">Pub_date:{{article.pub_date}}</h6>
                       </div>
                     </section>
                     <section class="row">
                       <div class="col-12 d-flex px-4 mx-2">
                         <img class="img-fluid align-self-start w-25 border-img" src="{{article.image.url}}" alt="logo image">
-                        <p class="px-1">{{article.article_text}}
-                          <a href="{% url 'news:detail' article.id %}">Continue read -></a>
+                        <p class="px-1">{{article.article_text|slice:"320"}}
+                           <a href="{% url 'news:detail' article.id %}"> Continue read -></a>
                         </p>
                       </div>
                     </section>
@@ -45,23 +46,39 @@
               </ul>
             </div>
             </section>
-            <section class="row">
+         {% if is_paginated %}
+            <section class="row justify-content-center">
               <div class="col-12 align-items-center">
                 <nav aria-label="Pagination">
                 <ul class="pagination pagination-xsm border-bottom-line">
-                  <li class="page-item text-color-primary disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                  <li class="page-item text-color-primary">
+                    <a class="page-link" {% if articles.has_previous %}
+                                            href="{% url 'news:index' page_obj.previous_page_number %}" 
+                                         {% else %}
+                                            href="#" tabindex="-1"
+                                         {% endif %}
+                                         >Previous</a>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item "><a class="page-link" href="#">3</a></li>
+                   {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                       <li class="page-item active">
+                        <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
+                       </li>
+                    {% else %}
+                       <li class="page-item"><a class="page-link" href="{% url 'news:index' i %}">{{i}}</a></li>
+                    {% endif %}
+                    {% endfor %}
                   <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a class="page-link" {% if articles.has_next %}
+                                            href="{% url 'news:index' page_obj.next_page_number %}" 
+                                         {% else %}
+                                            href="#" tabindex="-1"
+                                         {% endif %}
+                                         >Next</a>
                   </li>
                  </ul>
               </nav>
               </div>
             </section>
+         {% endif %}
             {% endblock %}

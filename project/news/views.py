@@ -17,6 +17,7 @@ class Index(generic.ListView):
     allow_empty = True
     template_name = "news/"+TP+"/index.html"
     context_object_name = "articles"
+    paginate_by = 10
 
     def get_queryset(self):
         return Article.objects.order_by('-pub_date')

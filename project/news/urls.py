@@ -18,7 +18,7 @@ from . import views
 
 app_name = 'news'
 urlpatterns = [
-    url(r'^$', views.Index.as_view(), name='index'),
-    url(r'^(?P<pk>[0-9]+)/$', views.Detail.as_view(), name='detail'),
+    url(r'^(?P<page>[0-9]+)/$', views.Index.as_view(), name='index'),
+    url(r'^detail/(?P<pk>[0-9]+)/$', views.Detail.as_view(), name='detail'),
     url(r'(?P<article_id>[0-9]+)/add_comment', views.add_comment, name='add_comment'),
 ]
