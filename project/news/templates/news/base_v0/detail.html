@@ -1,24 +1,70 @@
-<h1> Detail {{article.title}}</h1>
-<br> Category: {{article.category.name}}
-<br> Tags: {% for tag in article.tags_set.all %}
-        {{ tag.tag }}
-            {% endfor %}
-<br> {{article.image.url}}
-<br> {{article.article_text}}
-<br> Add comment:
-<form action="{% url 'news:add_comment' article.id %}" method="post">
-{% csrf_token %}
-    <br> <label for="comment_text"> Text</label> <input id="comment_text" type="text" name="comment_text">
-<br> <input type="submit" value="Send" />
-</form>
-<br> <h3>{{error_message}}</h3>
-<br> <h2> Comments({{article.comment_set.count}})</h2>
-<br><ul>
-    {% for comment in article.comment_set.all %}
-    <li>
-        <br> Author: {{comment.author}}
-        <br> Publication Date: {{comment.pub_date}}
-        <br> Comment: {{comment.comment_text}}
-    </li>
-    {% endfor %}
-</ul>
+{% extends "../../site/base_v0/base.html" %}
+
+{% block title %} {{article.title}} {% endblock %}
+
+
+{% block main %}
+ <section class="row justify-content-center">
+    <div class="col-8 d-flex align-items-center">
+       <article>
+           <section class="row justify-content-center">
+            <div class="col-12 d-flex flex-nowrap justify-content-center">
+              <h5 class="my-0 border-bottom-line px-4">{{article.title}}</h5>
+            </div>
+           </section>
+           <section class="row">
+            <div class="col-12 d-flex flex-nowrap">
+              <h6 class="p-1 pl-3 small">Category:{{article.category.name}}</h6>
+              <h6 class="p-1 small">Tags:{% for tag in article.tags_set.all %}
+                                            {{ tag.tag }}
+                                         {% endfor %}</h6>
+              <h6 class="p-1 small mr-auto">Comments:{{article.comment_set.count}}</h6>
+              <h6 class="p-1 pr-3 small">Pub_date:{{article.pub_date}}</h6>
+            </div>
+           </section>
+           <section class="row">
+            <div class="col-12 d-flex px-4 mx-2">
+              <img class="img-fluid align-self-start w-25 border-img" src="{{article.image.url}}" alt="article image">
+                <p class="px-1">{{article.article_text}}
+                </p>
+            </div>
+            </section>
+            <section class="row">
+              <div class="col-12 d-flex flex-column flex-nowrap align-items-center">
+                <h6 class="align-self-start pl-2">
+                  Add comment:
+                </h6>
+                {% if error_message %}
+                  <br> <h6 class="alert alert-danger" role="alert">{{error_message}}</h6>
+                {% endif %}
+                  <form action="{% url 'news:add_comment' article.id %}" class="col-8 d-flex flex-column " method="post">
+                  {% csrf_token %}
+                  <div class="form-group my-1">
+                   <textarea class="form-control" rows="3"></textarea>  
+                  </div>
+                    <button type="submit" class="btn btn-primary w-25 pb-4 align-self-center" value="Send">
+                      Send
+                    </button>
+                  </form>
+              </div>
+            </section>
+            <section class="row justify-content-center">
+              <div class="col-12 d-flex flex-nowrap justify-content-center">
+                 <h6> Comments({{article.comment_set.count}})</h6>
+                  <br><ul class="list-unstyled">
+                  {% for comment in article.comment_set.all %}
+                    <li>
+                      <br> Author: {{comment.author}}
+                      <br> Publication Date: {{comment.pub_date}}
+                      <br> {{comment.comment_text}}
+                    </li>
+                  {% endfor %}
+                      </ul>
+              </div>
+            </section>
+       </article>
+   
+   
+   </div>
+ </section>
+{% endblock %}

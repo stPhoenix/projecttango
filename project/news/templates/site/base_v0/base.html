@@ -21,11 +21,13 @@
       <div class="col-9 card">
         <section class="card-body">
           <header class="row">
+            <a href="http://projecttango-bohdansapovsky788074.codeanyapp.com:8000">
             <section class="col-12 d-flex align-items-center">
               <img class="img-fluid width-10" src="{% static 'news/base_v0/ico.jpg' %}" alt="logo image">
               <h3 class="float-center align-middle logo-font">PROJECT T.A.N.G.O.</h3>
               <h6 class="text-right pb-4">(game news)</h6>
             </section>
+            </a>
           </header>
           <nav class="row" aria-label="Navigation">
             <section class="col-12 d-flex flex-nowrap">
@@ -46,7 +48,12 @@
                   <a href="#" class="border-bottom-line  px-1">LINK</a>
                 </li>
               </ul>
-              <h6 class="border-bottom-line padding-top px-3 mx-3 text-font">{% block userpanel %} Welcome User {% endblock %}</h6>
+              <h6 class="border-bottom-line padding-top px-3 mx-3 text-font">  {% if user.is_authenticated %}
+                                                                                   Welcome {{user.username}}
+                                                                               {% else %}
+                                                                                   Welcome Guest
+                                                                               {% endif %}
+              </h6>
             </section>
           </nav>
           <main class="row flex-column">
