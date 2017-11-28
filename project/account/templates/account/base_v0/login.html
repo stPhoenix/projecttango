@@ -1,0 +1,28 @@
+{% extends "site/base_v0/base.html" %}
+
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block main %}
+
+ <section class="row justify-content-center">
+    <div class="col-8 d-flex flex-column align-items-center">
+      <form method="post" class="col-8 d-flex flex-column ">
+        {% csrf_token %}
+         <div class="form-group my-1">
+          <input type="text" name="username" class="form-control" placeholder="Enter username">
+         </div>
+        <div class="form-group my-1">
+          <input type="password" name="password" class="form-control" placeholder="Enter password">
+         </div>
+          <button type="submit" class="btn btn-primary w-25 mb-2 align-self-center"><p>Send</p></button>
+      </form>
+      <p class=" pl-4 pt-2 self-align-center">
+        <a href="{% url 'social:begin' 'google-oauth2' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/google.png' %}" alt="Login with Google"></a>
+        <a href="{% url 'social:begin' 'facebook' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/facebook.png' %}" alt="Login with Facebook"></a>
+        <a href="{% url 'social:begin' 'vk-oauth2' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/vkontakte.png' %}" alt="Login with Vkontakte"></a>
+      </p>
+    </div>
+</section>
+{% endblock %}
