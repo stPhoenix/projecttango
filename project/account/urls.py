@@ -20,4 +20,5 @@ app_name = 'account'
 urlpatterns = [
     url(r'^settings/(?P<pk>[0-9]+)/$', views.Settings.as_view(), name='settings'),
     url(r'^settings/password/$', views.password, name='password'),
+    url(r'^sign_up/$', views.user_sign_up, name='sign_up'),
 ]

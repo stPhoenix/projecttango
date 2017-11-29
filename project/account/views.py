@@ -11,6 +11,7 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeFor
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from .forms import UserForm
 
 # Create your views here.
 
@@ -77,3 +78,8 @@ def password(request):
     return render(request, 'account/password.html', {'form': form})
 
 
+def user_sign_up(request):
+    user_form = UserForm()
+    return render(request, 'account/sign_up.html', {
+        'user_form': user_form
+    })
