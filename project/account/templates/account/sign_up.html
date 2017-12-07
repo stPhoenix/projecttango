@@ -8,47 +8,36 @@
 
  <section class="row justify-content-center">
     <div class="col-8 d-flex flex-column align-items-center control-label">
-      <form method="post" class="col-8 d-flex flex-column form-group">
+      <form method="POST" class="col-8 d-flex flex-column">
          <div class="form-group my-3">
          <h2 class="row justify-content-center">Sign up</h2>
-          <form method="POST" class="form-control">
               {% csrf_token %}
               <div class="row justify-content-center">
                   <label class="col-3 d-inline-flex flex-column my-2 ml-1">Username:</label>
-                  <input class="col-6 d-flex mx-2 my-2" type="text" name="username" placeholder="Enter username">
+                  <input class="col-6 d-flex mx-2 my-1 form-control" type="text" name="username" placeholder="Enter username">
               </div>
               <div class="row justify-content-center">
                   <label class="col-3 d-inline-flex flex-column my-2 ml-1">Password:</label>
-                  <input class="col-6 d-flex mx-2 my-2" type="password" name="password" placeholder="Enter password">
+                  <input class="col-6 d-flex mx-2 my-1 form-control" type="password" name="password" placeholder="Enter password">
               </div>
               <div class="row justify-content-center">
                   <label class="col-3 d-inline-flex flex-column my-2 ml-1">First name:</label>
-                  <input class="col-6 d-flex mx-2 my-2" type="text" name="first_name" placeholder="Enter your first name">
+                  <input class="col-6 d-flex mx-2 my-1 form-control" type="text" name="first_name" placeholder="Enter your first name">
               </div>
               <div class="row justify-content-center">
                   <label class="col-3 d-inline-flex flex-column my-2 ml-1">Last name:</label>
-                  <input class="col-6 d-flex mx-2 my-2" type="text" name="last_name" placeholder="Enter your last name">
+                  <input class="col-6 d-flex mx-2 my-1 form-control" type="text" name="last_name" placeholder="Enter your last name">
               </div>
               <div class="row justify-content-center">
                   <label class="col-3 d-inline-flex flex-column my-2 ml-1">Email:</label>
-                  <input class="col-6 d-flex mx-2 my-2" type="email" name="email" placeholder="Enter your e-mail">
+                  <input class="col-6 d-flex mx-2 my-1 form-control" type="email" name="email" placeholder="Enter your e-mail">
               </div>
               <div class="row justify-content-center">
-                <button type="submit" class="btn btn-primary my-4 ml-3">Register</button>
+                <button type="submit" class="btn btn-red my-4 ml-3">Register</button>
               </div>
-          </form>
          </div>
       </form>
     </div>
 </section>
 {% endblock %}
-</head>
-<body>
-<h2 class="text-center m-20">Registration</h2>
-        <form method="POST" class="text-center justify-content-center">
-      {% csrf_token %}
-      {{ user_form.as_p }}
-        <button type="submit" class="btn">Register</button>
-        </form>
-</body>
 </html>
