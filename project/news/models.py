@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 TITLE_MAX_LENGTH = 90
@@ -19,7 +20,8 @@ class Article(models.Model):
         return "\n Title: %s \n Publication date: %s \n Category: %s \n Text: %s \n Image: %s" % \
                 (self.title, self.pub_date, self.category.name, self.article_text, self.image.url)
 
-
 class Tags(models.Model):
     tag = models.CharField(max_length=30)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+

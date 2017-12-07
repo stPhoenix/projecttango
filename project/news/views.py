@@ -59,3 +59,4 @@ def add_comment(request, article_id):
                 'article': article,
                 'error_message': "Can't add comment.",
             })
+
