@@ -69,7 +69,7 @@
        color: #ffffff;
        background-color: #e40202;
     }
-    .red-border:focus {
+    .border-red:focus {
         border-color: #e40202;
         box-shadow: 0 0 0 0.2rem rgba(255, 63, 63, 0.25);
      }
