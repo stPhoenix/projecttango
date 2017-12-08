@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^account/', include('account.urls')),
     url(r'^$', views.Index.as_view(), name='index'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='account/'+TP+'/login.html'), name='login'),
-    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(template_name='news/'+TP+'/index.html'), name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -49,9 +49,9 @@
                 </li>
               </ul>
               <h6 class="border-bottom-line padding-top px-3 mx-3 text-font">  {% if user.is_authenticated %}
-                                                                                   Welcome {{user.username}}
+                                                                                   Welcome {{user.username}} | <a href="{% url 'logout'%}"> Log out</a>
                                                                                {% else %}
-                                                                                   Welcome Guest
+                                                                                   Welcome Guest | <a href="{% url 'login'%}"> Log in</a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
                                                                                {% endif %}
               </h6>
             </section>
