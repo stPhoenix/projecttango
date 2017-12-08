@@ -11,6 +11,13 @@
       <form method="POST" class="col-8 d-flex flex-column">
          <div class="form-group my-3">
          <h2 class="row justify-content-center">Sign up</h2>
+             <h6 class="row justify-content-center">Using social networks:</h6>
+             <p class="pl-5 pt-2 ml-3 justify-content-center">
+                   <a href="{% url 'social:begin' 'google-oauth2' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/google.png' %}" alt="Login with Google"></a>
+                   <a href="{% url 'social:begin' 'facebook' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/facebook.png' %}" alt="Login with Facebook"></a>
+                   <a href="{% url 'social:begin' 'vk-oauth2' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/vkontakte.png' %}" alt="Login with Vkontakte"></a>
+             </p>
+             <p class="row justify-content-center">OR</p>
               {% csrf_token %}
               <div class="row justify-content-center">
                   <label class="col-3 d-inline-flex flex-column my-2 ml-1">Username:</label>
@@ -33,7 +40,7 @@
                   <input class="col-6 d-flex mx-2 my-1 form-control" type="email" name="email" placeholder="Enter your e-mail">
               </div>
               <div class="row justify-content-center">
-                <button type="submit" class="btn btn-red my-4 ml-3">Register</button>
+                <button type="submit" class="btn btn-red border-red my-4 ml-3">Register</button>
               </div>
          </div>
       </form>
