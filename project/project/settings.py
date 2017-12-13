@@ -142,7 +142,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.vk.VKOAuth2'
+    'social_core.backends.vk.VKOAuth2',
 )
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',

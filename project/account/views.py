@@ -12,13 +12,15 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import UserForm
+from project.settings import TEMPLATE_PREFIX as TP
+
 
 # Create your views here.
 
 
 class Settings(LoginRequiredMixin, generic.UpdateView):
     model = Account
-    template_name = 'account/settings.html'
+    template_name = 'account/'+TP+'/settings.html'
     success_url = '#'
     fields = ['username', 'first_name', 'last_name', 'avatar']
 

@@ -69,7 +69,12 @@
        color: #ffffff;
        background-color: #e40202;
     }
-    .border-red:focus {
-        border-color: #e40202;
-        box-shadow: 0 0 0 0.2rem rgba(255, 63, 63, 0.25);
-     }
+    .btn-red:hover, .btn-red:focus {
+       background-color: #a50404;
+       border-color: #e40202;
+       box-shadow: 0 0 0 0.2rem rgba(255, 63, 63, 0.25);
+    }
+    .btn-social:hover {
+       -webkit-filter: opacity(0.45) drop-shadow(0 0 0 #a50404);
+       filter: opacity(0.45) drop-shadow(0 0 0 #a50404);
+    }

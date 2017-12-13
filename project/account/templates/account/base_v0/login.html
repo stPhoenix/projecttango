@@ -5,27 +5,26 @@
 {% block title %} Login {% endblock %}
 
 {% block main %}
-
- <section class="row justify-content-center">
     <div class="col-8 d-flex flex-column align-items-center">
         {% if form.errors %}
         <div class="alert alert-danger mb-0" role="alert">Username or password wrong</div>
         {% endif %}
-      <form method="post" class="col-8 d-flex flex-column ">
+      <form method="post" class="d-flex flex-column ">
         {% csrf_token %}
          <div class="form-group my-1">
-          <input type="text" name="username" class="form-control red-border" placeholder="Enter username">
+          <input type="text" name="username" class="form-control border-red" placeholder="Enter username">
          </div>
         <div class="form-group my-1">
-          <input type="password" name="password" class="form-control red-border" placeholder="Enter password">
+          <input type="password" name="password" class="form-control border-red" placeholder="Enter password">
          </div>
-          <button type="submit" class="btn btn-red red-border w-25 h-25 align-self-center"><p>Send</p></button>
+          <button type="submit" class="btn btn-red border-red align-self-center">Send</button>
       </form>
-      <p class=" pl-4 pt-2 self-align-center">
-        <a href="{% url 'social:begin' 'google-oauth2' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/google.png' %}" alt="Login with Google"></a>
-        <a href="{% url 'social:begin' 'facebook' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/facebook.png' %}" alt="Login with Facebook"></a>
-        <a href="{% url 'social:begin' 'vk-oauth2' %}"> <img  class="img-fluid w-25" src="{% static 'account/base_v0/social_icons/vkontakte.png' %}" alt="Login with Vkontakte"></a>
+        <h5 class="py-2">OR</h5>
+      <p class=" pl-4 self-align-center">
+          <!--TODO:make image overlay css animation-->
+        <a href="{% url 'social:begin' 'google-oauth2' %}"> <img  class="img-fluid w-25 btn-social" src="{% static 'account/base_v0/social_icons/google.png' %}" alt="Login with Google"></a>
+        <a href="{% url 'social:begin' 'facebook' %}"> <img  class="img-fluid w-25 btn-social" src="{% static 'account/base_v0/social_icons/facebook.png' %}" alt="Login with Facebook"></a>
+        <a href="{% url 'social:begin' 'vk-oauth2' %}"> <img  class="img-fluid w-25 btn-social" src="{% static 'account/base_v0/social_icons/vkontakte.png' %}" alt="Login with Vkontakte"></a>
       </p>
     </div>
-</section>
 {% endblock %}

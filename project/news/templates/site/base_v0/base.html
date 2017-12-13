@@ -49,14 +49,14 @@
                 </li>
               </ul>
               <h6 class="border-bottom-line padding-top px-3 mx-3 text-font">  {% if user.is_authenticated %}
-                                                                                   Welcome {{user.username}} | <a href="{% url 'logout'%}"> Log out</a>
+                                                                                   Welcome {{user.username}} | <a href="{% url 'account:settings' user.pk %}"> Settings </a> | <a href="{% url 'logout'%}"> Log out</a>
                                                                                {% else %}
                                                                                    Welcome Guest | <a href="{% url 'login'%}"> Log in</a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
                                                                                {% endif %}
               </h6>
             </section>
           </nav>
-          <main class="row flex-column">
+          <main class="row justify-content-center">
             {% block main %}
             <section class="row justify-content-center">
             <div class="col-8 d-flex align-items-center">

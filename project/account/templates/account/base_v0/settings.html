@@ -1,0 +1,108 @@
+{% extends "site/base_v0/base.html" %}
+
+{% load static %}
+
+{% block title %} Settings {% endblock %}
+
+{% block main %}
+
+{% if user.is_authenticated %}
+    <section class="col-8 d-flex flex-column align-items-center">
+      <h2 class="border-bottom-line px-2 mt-2">Avatar:</h2>
+        <img class="img-fluid border-img w-25" src="{{ user.avatar.url}}">
+        <form action="" class="d-flex flex-column"  enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="form-group py-0">
+                 {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <div class="alert alert-danger mb-0" role="alert"> {{error|escape}} </div>
+                    {% endfor %}
+                {% endif %}
+                <label for="id_username">Username:</label>
+                <input type="text" class="form-control" name="username" value="{{form.username.value}}" maxlength="150" required id="id_username" />
+                <small id="emailHelp" class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+            </div>
+            <div class="form-group">
+                {% if form.first_name.errors %}
+                    {% for error in form.first_name.errors %}
+                        <div class="alert alert-danger mb-0" role="alert"> {{error|escape}} </div>
+                    {% endfor %}
+                {% endif %}
+                <label for="id_first_name" > First name:</label>
+                <input type="text" class="form-control" name="first_name" value="{{form.first_name.value}}" maxlength="30" id="id_first_name" />
+            </div>
+            <div class="form-group">
+                {% if form.last_name.errors %}
+                    {% for error in form.last_name.errors %}
+                        <div class="alert alert-danger mb-0" role="alert"> {{error|escape}} </div>
+                    {% endfor %}
+                {% endif %}
+                <label for="id_last_name">Last name:</label>
+                <input type="text" class="form-control" name="last_name" value="{{form.last_name.value}}" maxlength="30" id="id_last_name" />
+            </div>
+            <div class="form-group">
+                {% if form.avatar.errors %}
+                    {% for error in form.avatar.errors %}
+                        <div class="alert alert-danger mb-0" role="alert"> {{error|escape}} </div>
+                    {% endfor %}
+                {% endif %}
+                <label for="id_avatar">Change avatar:</label>
+                <input type="file" class="form-control-file" name="avatar" id="id_avatar" />
+                <small id="avatarHelp" class="form-text text-muted">Maximum image size - 2.5Mb.</small>
+
+            </div>
+            <button class="btn btn-red border-red w-25 align-self-center" type="submit" value="Send">Send</button>
+        </form>
+        <h2 class="border-bottom-line px-2 mt-2">Google</h2>
+            {% if google_login %}
+            {% if can_disconnect %}
+            <form method="post" action="{% url 'social:disconnect' 'google-oauth2' %}">
+                {% csrf_token %}
+               <button class="btn btn-red" type="button">Disconnect from Google</button>
+            </form>
+            {% else %}
+            <div class="alert alert-warning" role="alert">
+                You must define a password for your account before disconnecting from Google. <a href="{% url 'account:password' %}">Click here.</a>
+            </div>
+                {% endif %}
+                {% else %}
+                <a href="{% url 'social:begin' 'google-oauth2' %}"> <button class="btn btn-red" type="button">Connect to Google</button></a>
+            {% endif %}
+
+        <h2 class="border-bottom-line px-2 mt-2">Vkontakte</h2>
+            {% if vk_login %}
+            {% if can_disconnect %}
+            <form method="post" action="{% url 'social:disconnect' 'vk-oauth2' %}">
+            {% csrf_token %}
+                <button class="btn btn-red" type="button">Disconnect from Vk</button>
+            </form>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    You must define a password for your account before disconnecting from Vkontakte. <a href="{% url 'account:password' %}">Click here.</a>
+                </div>
+            {% endif %}
+            {% else %}
+                <a href="{% url 'social:begin' 'vk-oauh2' %}"><button class="btn btn-red" type="button">Connect to Vkontakte</button></a>
+            {% endif %}
+
+        <h2 class="border-bottom-line px-2 mt-2">Facebook</h2>
+            {% if facebook_login %}
+            {% if can_disconnect %}
+                <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
+                {% csrf_token %}
+                    <button class="btn btn-red" type="button">Disconnect from Facebook</button>
+                </form>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    You must define a password for your account before disconnecting from Facebook. <a href="{% url 'account:password' %}">Click here.</a>
+                </div>
+            {% endif %}
+            {% else %}
+             <a href="{% url 'social:begin' 'facebook' %}"><button class="btn btn-red" type="button">Connect to Facebook</button></a>
+            {% endif %}
+
+    </section>
+
+{% endif %}
+
+{% endblock %}
