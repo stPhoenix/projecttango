@@ -22,6 +22,13 @@ class Worker:
             cat = Category.objects.create(name=self.DEFAULT_CATEGORY_NAME)
             cat.save()
             print('Default category created!')
+        self.headers = requests.utils.default_headers()
+        self.headers.update(
+            {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                              ' (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
+            }
+        )
 
 
     def test_db(self):
@@ -80,7 +87,7 @@ class Worker:
             #download_image(article_image_url, article.image)
 
         def get_soup(url):
-            req = requests.get(url)
+            req = requests.get(url, headers=self.headers)
             if req.status_code == requests.codes.ok:
                 return bs4(req.text, 'html.parser')
             else:
@@ -114,6 +121,7 @@ class Worker:
 
     def all(self):
         self.pcgamer_com_review()
+        time.sleep(1000)
 
 
 if __name__ == "__main__":
