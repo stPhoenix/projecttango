@@ -32,6 +32,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.spl
 # Application definition
 
 INSTALLED_APPS = [
+    'journalist.apps.JournalistConfig',
     'social_django',
     'comments.apps.CommentsConfig',
     'account.apps.AccountConfig',
