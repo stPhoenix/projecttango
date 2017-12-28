@@ -69,20 +69,20 @@
                 <a href="{% url 'social:begin' 'google-oauth2' %}"> <button class="btn btn-red" type="button">Connect to Google</button></a>
             {% endif %}
 
-        <h2 class="border-bottom-line px-2 mt-2">Vkontakte</h2>
+        <h2 class="border-bottom-line px-2 mt-2">VK</h2>
             {% if vk_login %}
             {% if can_disconnect %}
             <form method="post" action="{% url 'social:disconnect' 'vk-oauth2' %}">
             {% csrf_token %}
-                <button class="btn btn-red" type="button">Disconnect from Vk</button>
+                <button class="btn btn-red" type="button">Disconnect from VK</button>
             </form>
             {% else %}
                 <div class="alert alert-warning" role="alert">
-                    You must define a password for your account before disconnecting from Vkontakte. <a href="{% url 'account:password' %}">Click here.</a>
+                    You must define a password for your account before disconnecting from VK. <a href="{% url 'account:password' %}">Click here.</a>
                 </div>
             {% endif %}
             {% else %}
-                <a href="{% url 'social:begin' 'vk-oauh2' %}"><button class="btn btn-red" type="button">Connect to Vkontakte</button></a>
+                <a href="{% url 'social:begin' 'vk-oauh2' %}"><button class="btn btn-red" type="button">Connect to VK</button></a>
             {% endif %}
 
         <h2 class="border-bottom-line px-2 mt-2">Facebook</h2>
