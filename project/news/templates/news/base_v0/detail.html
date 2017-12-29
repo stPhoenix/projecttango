@@ -39,7 +39,7 @@
                   <form action="{% url 'news:add_comment' article.id %}" class="col-8 d-flex flex-column " method="post">
                   {% csrf_token %}
                   <div class="form-group my-1">
-                   <textarea class="form-control" rows="3"></textarea>  
+                   <textarea class="form-control" name="comment_text" rows="3"></textarea>
                   </div>
                     <button type="submit" class="btn btn-primary w-25 pb-4 align-self-center" value="Send">
                       Send
