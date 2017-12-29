@@ -13,7 +13,7 @@
    <link rel="stylesheet" href="{% static 'news/base_v0/css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title> {% block title %} Home Page {% endblock %}</title> 
+   <title> {% block title %} Home Page {% endblock %}</title>
 </head>
 <body>
  <div class="container">
@@ -30,7 +30,7 @@
             </a>
           </header>
           <nav class="row" aria-label="Navigation">
-            <section class="col-12 col-md-12 d-flex flex-wrap">
+            <section class="col-12 col-md-12 col-sm-auto col-esd d-flex flex-wrap">
               <ul class="nav d-flex mr-auto h4">
                 <li class="nav-item">
                   <a href="#" class="border-bottom-line  px-1">LINK</a>
@@ -48,7 +48,7 @@
                   <a href="#" class="border-bottom-line  px-1">LINK</a>
                 </li>
               </ul>
-              <h4 class="border-bottom-line padding-top px-3 mx-3 text-font">  {% if user.is_authenticated %}
+              <h4 class="d-inline-flex border-bottom-line padding-top px-3 mx-3 text-font">  {% if user.is_authenticated %}
                                                                                    Welcome {{user.username}} | <a href="{% url 'account:settings' user.pk %}"> Settings </a> | <a href="{% url 'logout'%}"> Log out</a>
                                                                                {% else %}
                                                                                    Welcome Guest | <a href="{% url 'login'%}"> Log in</a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
