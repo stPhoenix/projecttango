@@ -121,7 +121,8 @@ class Worker:
 
     def all(self):
         self.pcgamer_com_review()
-        time.sleep(1000)
+        print('Sleeping for 60 min')
+        time.sleep(3600)
 
 
 if __name__ == "__main__":
