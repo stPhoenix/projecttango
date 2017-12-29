@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
 TITLE_MAX_LENGTH = 90
+TAG_MAX_LENGTH = 30
 
 
 class Category(models.Model):
@@ -20,7 +21,7 @@ class Article(models.Model):
 
 
 class Tags(models.Model):
-    tag = models.CharField(max_length=30)
+    tag = models.CharField(max_length=TAG_MAX_LENGTH)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
 
 
