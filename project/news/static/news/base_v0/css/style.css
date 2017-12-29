@@ -1,6 +1,16 @@
 // No media query since this is the default in Bootstrap
+
+//Extra small devices(phones, 576px and less)
+@media (max-width: 576px) {
+  .col-esd {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { ... }
+
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { ... }
 
@@ -88,3 +98,5 @@
        -webkit-filter: opacity(0.45) drop-shadow(0 0 0 #a50404);
        filter: opacity(0.45) drop-shadow(0 0 0 #a50404);
     }
+
+
