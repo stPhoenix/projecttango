@@ -83,6 +83,10 @@ class Worker:
                                              category=category)
             article.image_url = article_image_url if article_image_url is not None else article.image_url
             article.save()
+            for tag in soup.find_all('div', attrs={'class': 'tag'}, limit=5):
+                if len(tag.get_text()) <= TAG_MAX_LENGTH:
+                    t = Tags.objects.create(tag=tag.get_text(), article=article)
+                    t.save()
             print('Saved article: %s' % a_title)
             #download_image(article_image_url, article.image)
 
@@ -106,7 +110,7 @@ class Worker:
                 if ar.parent['href'] != last_url and last_url_trigger is True:
                     last_url_trigger = False
                     memory.last_url = ar.parent['href']
-                elif ar.parent['href'] != last_url and articles <= self.MAX_ARTICLES:
+                if ar.parent['href'] != last_url and articles <= self.MAX_ARTICLES:
                     write_article(ar.parent['href'])
                     articles += 1
                     last_url = ar.parent['href']
@@ -137,6 +141,6 @@ else:
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'project.settings')
     sys.path.append(BASE_DIR)
     django.setup()
-    from news.models import Article, Category, TITLE_MAX_LENGTH
+    from news.models import Article, Category, Tags, TITLE_MAX_LENGTH, TAG_MAX_LENGTH
     from .models import WorkerMemory
 
