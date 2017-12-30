@@ -31,9 +31,9 @@
           </header>
           <nav class="row" aria-label="Navigation">
             <section class="col-12 col-md-12 d-flex justify-content-center justify-content-md-between flex-wrap">
-              <ul class="nav d-inline-flex justify-content-around flex-wrap h4">
+              <ul class="nav d-inline-flex justify-content-center flex-wrap md-font">
                 <li class="nav-item">
-                  <a href="#" class="border-bottom-line px-1">Home</a>
+                  <a href="http://127.0.0.1:8000/" class="border-bottom-line px-1">Home</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="border-bottom-line px-1">Forum</a>
@@ -48,12 +48,12 @@
                   <a href="#" class="border-bottom-line px-1">Contact Us</a>
                 </li>
               </ul>
-              <h5 class="d-inline-flex justify-content-around justify-content-md-end flex-wrap border-bottom-line padding-top px-3 mx-3 text-font">  {% if user.is_authenticated %}
+              <div class="d-inline-flex justify-content-around justify-content-md-end flex-wrap border-bottom-line padding-top px-3 mx-3 md-font text-font">  {% if user.is_authenticated %}
                                                                                    Welcome {{user.username}} | <a href="{% url 'account:settings' user.pk %}"> Settings </a> | <a href="{% url 'logout'%}"> Log out</a>
                                                                                {% else %}
-                                                                                   Welcome Guest | <a href="{% url 'login'%}"> Log in</a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
+                                                                                   Welcome Guest | <a href="{% url 'login'%}"> Log in </a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
                                                                                {% endif %}
-              </h5>
+              </div>
             </section>
           </nav>
           <main class="row justify-content-center">
