@@ -14,9 +14,9 @@
            </section>
            <section class="row">
             <div class="col-12 d-flex flex-nowrap">
-              <h6 class="p-1 pl-3 small">Category:{{article.category.name}}</h6>
+              <h6 class="p-1 pl-3 small">Category:<a href="{% url 'news:filter' 'category' article.category.name %}">{{article.category.name}}</a></h6>
               <h6 class="p-1 small">Tags:{% for tag in article.tags_set.all %}
-                                            {{ tag.tag }}
+                  <a href="{% url 'news:filter' 'tag' tag.tag %}">{{ tag.tag }}</a>
                                          {% endfor %}</h6>
               <h6 class="p-1 small mr-auto">Comments:{{article.comment_set.count}}</h6>
               <h6 class="p-1 pr-3 small">Pub_date:{{article.pub_date}}</h6>

@@ -12,7 +12,7 @@ import time
 
 class Worker:
     MAX_ARTICLES = 20
-    DEFAULT_CATEGORY_NAME = 'Game news'
+    DEFAULT_CATEGORY_NAME = 'Interesting'
 
     def __init__(self):
         try:
@@ -85,7 +85,7 @@ class Worker:
             article.save()
             for tag in soup.find_all('div', attrs={'class': 'tag'}, limit=5):
                 if len(tag.get_text()) <= TAG_MAX_LENGTH:
-                    t = Tags.objects.create(tag=tag.get_text(), article=article)
+                    t = Tags.objects.create(tag=tag.get_text(strip=True).replace(' ', ''), article=article)
                     t.save()
             print('Saved article: %s' % a_title)
             #download_image(article_image_url, article.image)
