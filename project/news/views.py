@@ -3,8 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
-from .models import Article
+from .models import Article, Category, Tags
 from django.db import Error
+from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth.decorators import login_required
 from project.settings import TEMPLATE_PREFIX as TP
 
@@ -39,6 +40,21 @@ class Detail(generic.DetailView):
     #     #context['article'] = context['article'].comment_set.order_by('-pub_date')
     #     return context
 
+
+class CategoryTagView(generic.ListView):
+
+    model = Article
+    allow_empty = True
+    template_name = "news/"+TP+"/index.html"
+    context_object_name = "articles"
+    paginate_by = 10
+
+    def get_queryset(self):
+        if self.kwargs['option'] == 'category':
+            cat = Category.objects.get(name=str(self.kwargs['variable']))
+            return Article.objects.filter(category=cat).order_by('-pub_date')
+        elif self.kwargs['option'] == 'tag':
+            return Article.objects.filter(tags__tag=self.kwargs['variable']).order_by('-pub_date')
 
 @login_required
 def add_comment(request, article_id):
