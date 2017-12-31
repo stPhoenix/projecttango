@@ -30,8 +30,8 @@
             </a>
           </header>
           <nav class="row" aria-label="Navigation">
-            <section class="col-12 col-md-12 d-flex justify-content-center justify-content-md-between flex-wrap">
-              <ul class="nav d-inline-flex justify-content-center flex-wrap md-font">
+            <section class="d-inline-flex col-md-12 justify-content-center justify-content-md-between flex-wrap">
+              <ul class="nav-scrolling navbar-nav-scroll navbar-nav flex-row d-flex justify-content-md-start h2 md-center mb-2">
                 <li class="nav-item">
                   <a href="http://127.0.0.1:8000/" class="border-bottom-line px-1">Home</a>
                 </li>
@@ -45,14 +45,14 @@
                   <a href="#" class="border-bottom-line px-1">About</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="border-bottom-line px-1">Contact Us</a>
+                  <a href="#" class="border-bottom-line px-1">Contact<nobr> Us </nobr></a>
                 </li>
               </ul>
-              <div class="d-inline-flex justify-content-around justify-content-md-end flex-wrap border-bottom-line padding-top px-3 mx-3 md-font text-font">  {% if user.is_authenticated %}
+              <div class="d-flex justify-content-center flex-wrap justify-content-md-end border-bottom-line padding-top px-2 mx-2 my-2 mt-2 pt-1 text-font h5">  {% if user.is_authenticated %}
                                                                                    Welcome {{user.username}} | <a href="{% url 'account:settings' user.pk %}"> Settings </a> | <a href="{% url 'logout'%}"> Log out</a>
                                                                                {% else %}
                                                                                    Welcome Guest | <a href="{% url 'login'%}"> Log in </a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
-                                                                               {% endif %}
+                                                                              {% endif %}
               </div>
             </section>
           </nav>
