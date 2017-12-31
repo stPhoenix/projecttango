@@ -101,4 +101,6 @@
   overflow-y: hidden;
    }
 
-
+.word-break {
+    word-break: break-all;
+}
