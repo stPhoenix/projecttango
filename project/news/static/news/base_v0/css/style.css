@@ -1,9 +1,16 @@
 // No media query since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 470px) { ... }
+@media (min-width: 470px) {
+  .nav-scrolling {
+    overflow: auto;
+   }
+}
 
 @media (min-width: 470px) and (max-width: 767px) {
+  .nav-scrolling {
+    overflow: auto;
+   }
   .md-center {
     -ms-flex-pack: center !important;
         justify-content: center !important;
@@ -11,11 +18,7 @@
   }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  .md-font {
-    font-size: 200%;
-  }
-}
+@media (min-width: 768px) { ... }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) { ... }
@@ -94,13 +97,7 @@
        font-size: 16px;
     }
 
-//For all display sizes
-
 .nav-scrolling {
   overflow-x: auto;
   overflow-y: hidden;
    }
-
-.word-break {
-    word-break: break-all;
-}
