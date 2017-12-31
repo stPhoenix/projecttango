@@ -36,14 +36,12 @@
                 {% if error_message %}
                   <br> <h6 class="alert alert-danger" role="alert">{{error_message}}</h6>
                 {% endif %}
-                  <form action="{% url 'news:add_comment' article.id %}" class="col-8 d-flex flex-column " method="post">
+                  <form action="{% url 'news:add_comment' article.id %}" class="col-12 d-flex flex-column " method="post">
                   {% csrf_token %}
                   <div class="form-group my-1">
                    <textarea class="form-control" name="comment_text" rows="3"></textarea>
                   </div>
-                    <button type="submit" class="btn btn-red border-red w-25 pb-4 align-self-center" value="Send">
-                      Send
-                    </button>
+                    <button type="submit" class="btn btn-red border-red align-self-center">Send</button>
                   </form>
               </div>
           </section>

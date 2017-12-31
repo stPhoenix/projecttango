@@ -104,3 +104,14 @@
 .word-break{
     word-break: break-all;
     }
+.form-control:focus {
+  color: #a50404;
+  background-color: #fff;
+  border-color: #e40202;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(228, 2, 2, 0.25);
+}
+select.form-control:focus::-ms-value {
+  color: #a50404;
+  background-color: #fff;
+}
