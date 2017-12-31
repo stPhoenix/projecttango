@@ -1,7 +1,14 @@
 // No media query since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { ... }
+@media (min-width: 470px) { ... }
+
+@media (min-width: 470px) and (max-width: 767px) {
+  .md-center {
+    -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+  }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
@@ -97,4 +104,12 @@
     .text-height-13px {
        font-size: 16px;
     }
+
+//For all display sizes
+
+.nav-scrolling {
+  overflow-x: auto;
+  overflow-y: hidden;
+   }
+
 
