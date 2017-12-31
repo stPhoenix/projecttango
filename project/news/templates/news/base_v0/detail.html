@@ -8,29 +8,29 @@
     <div class="col-12 col-md-8 d-flex align-items-center">
       <article>
           <section class="row justify-content-center">
-                      <div class="col-12 d-flex flex-wrap flex-md-nowrap text-center">
-                        <h5 class="my-0 border-bottom-line px-md-4"><a href="{% url 'news:detail' article.id %}">{{article.title}}</a></h5>
+                      <div class="col-12 d-flex flex-wrap text-center">
+                        <h4 class="my-0 border-bottom-line w-100"><a href="{% url 'news:detail' article.id %}">{{article.title}}</a></h4>
                       </div>
                     </section>
-          <section class="row">
-                      <div class="col-12 d-flex flex-wrap flex-md-nowrap">
+                    <section class="row">
+                      <div class="col-12 d-flex flex-wrap flex-md-nowrap flex-lg-nowrap">
                           <h6 class="p-1 pl-1">Category:<a href="{% url 'news:filter' 'category' article.category.name %}">{{article.category.name}}</a></h6>
                         <h6 class="p-1">Tags:{% for tag in article.tags_set.all %}
                             <a href="{% url 'news:filter' 'tag' tag.tag %}">{{ tag.tag }}</a>
                                                    {% endfor %}</h6>
                         <h6 class="p-1 mr-auto">Comments:{{article.comment_set.count}}</h6>
-                        <h6 class="p-1 pr-3">Pub_date:{{article.pub_date}}</h6>
+                        <h6 class="p-1 pr-3 pr-md-0">Pub_date:{{article.pub_date}}</h6>
                       </div>
-          </section>
+                    </section>
           <section class="row">
                       <div class="col-12 d-flex flex-column flex-wrap px-md-4 mx-md-2">
-                        <img class="img-fluid align-self-center align-self-md-start w-75 w-md-25 border-img" src="{{article.image_url}}" alt="article image">
+                        <img class="img-fluid align-self-center w-75 border-img" src="{{article.image_url}}" alt="article image">
                         <div class="mx-auto pl-1">{{article.article_text|safe}}</div>
                       </div>
           </section>
           <section class="row">
-              <div class="col-12 d-flex flex-column flex-nowrap align-items-center">
-                <h6 class="align-self-start pl-2">
+              <div class="col-12 d-flex flex-column flex-nowrap align-items-center px-md-4 mx-md-2">
+                <h6 class="align-self-start">
                   Add comment:
                 </h6>
                 {% if error_message %}
@@ -48,7 +48,7 @@
               </div>
           </section>
           <section class="row">
-              <div class="col-12 d-flex flex-column flex-wrap">
+              <div class="col-12 d-flex flex-column flex-wrap mx-1 mx-sm-2 mx-md-3 mx-lg-4">
                  <h6> Comments({{article.comment_set.count}})</h6>
 
                   {% for comment in article.comment_set.all %}
