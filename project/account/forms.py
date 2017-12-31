@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 class SettingsAccountForm(forms.Form):
     username = forms.CharField(max_length=150)
@@ -15,10 +17,10 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'password', 'first_name', 'last_name', 'email')
         # Keep "widgets" for a case; it regulates behaviour of a form
-        """widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Please, enter username', "class": "col-6 d-inline-flex flex-column my-2 ml-1",}),
-            'password': forms.PasswordInput(attrs={'placeholder': 'Please, enter password', 'class': "col-6 d-inline-flex flex-column my-2 ml-1"}),
-            'first_name': forms.TextInput(attrs={'placeholder': 'Please, enter your first name', "class": "col-6 d-inline-flex flex-column my-2 ml-1"}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Please, enter your last name', "class": "col-6 d-inline-flex flex-column my-2 ml-1"}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Please, enter your E-mail', "class": "col-6 d-inline-flex flex-column my-2 ml-1"}),
-        }"""
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Enter username', "class": "d-inline-flex mx-2 my-1 form-control",}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Enter password', 'class': "d-inline-flex mx-2 my-1 form-control"}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Enter your first name', "class": "d-inline-flex mx-2 my-1 form-control"}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Enter your last name', "class": "d-inline-flex mx-2 my-1 form-control"}),
+            'email': forms.EmailInput(attrs={'placeholder': 'Enter your E-mail', "class": "d-inline-flex mx-2 my-1 form-control"}),
+        }
