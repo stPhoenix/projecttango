@@ -1,1 +1,1 @@
-web: python project/manage.py runserver 0.0.0.0:80
+web: gunicorn project/projecttango.wsgi --log-file -
