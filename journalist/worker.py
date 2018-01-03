@@ -136,7 +136,7 @@ if __name__ == "__main__":
     sys.path.append(BASE_DIR)
     django.setup()
     from news.models import Article, Category, Tags, TITLE_MAX_LENGTH, TAG_MAX_LENGTH
-    from .models import WorkerMemory
+    from models import WorkerMemory
     Worker().all()
 else:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
