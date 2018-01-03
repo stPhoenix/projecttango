@@ -1,20 +1,20 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "690a82f9141c4bce94be289107273a353f87848d513aafefe50b86c8444a7433"
+            "sha256": "b6556aac9695209e984275dc2cdd6a40c15077e69d260b7d1001f93d0076ab0e"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
             "implementation_version": "3.6.3",
-            "os_name": "posix",
-            "platform_machine": "x86_64",
+            "os_name": "nt",
+            "platform_machine": "AMD64",
             "platform_python_implementation": "CPython",
-            "platform_release": "2.6.32-042stab112.15",
-            "platform_system": "Linux",
-            "platform_version": "#1 SMP Tue Oct 20 17:22:56 MSK 2015",
+            "platform_release": "10",
+            "platform_system": "Windows",
+            "platform_version": "10.0.16299",
             "python_full_version": "3.6.3",
             "python_version": "3.6",
-            "sys_platform": "linux"
+            "sys_platform": "win32"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -55,6 +55,13 @@
                 "sha256:24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4"
             ],
             "version": "==0.5.0"
+        },
+        "dj-database-url": {
+            "hashes": [
+                "sha256:e16d94c382ea0564c48038fa7fe8d9c890ef1ab1a8ec4cb48e732c124b9482fd",
+                "sha256:a6832d8445ee9d788c5baa48aef8130bf61fdc442f7d9a548424d25cd85c9f08"
+            ],
+            "version": "==0.4.2"
         },
         "django": {
             "hashes": [

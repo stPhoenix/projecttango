@@ -125,8 +125,9 @@ class Worker:
 
     def all(self):
         self.pcgamer_com_review()
-        print('Sleeping for 60 min')
-        time.sleep(3600)
+        print('Sleeping for 120 min')
+        time.sleep(7200)
+        self.all()
 
 
 if __name__ == "__main__":
@@ -134,8 +135,9 @@ if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'project.settings')
     sys.path.append(BASE_DIR)
     django.setup()
-    from news.models import Article, Category
-    Worker().test_db()
+    from news.models import Article, Category, Tags, TITLE_MAX_LENGTH, TAG_MAX_LENGTH
+    from models import WorkerMemory
+    Worker().all()
 else:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'project.settings')
