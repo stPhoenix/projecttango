@@ -29,6 +29,7 @@ toml = "==0.9.3.1"
 "urllib3" = "==1.22"
 gunicorn = "*"
 dj-database-url = "*"
+whitenoise = "*"
 
 
 [dev-packages]
