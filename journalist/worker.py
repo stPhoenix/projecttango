@@ -8,6 +8,7 @@ from django.utils import timezone
 from bs4 import BeautifulSoup as bs4
 from django.db.models import ObjectDoesNotExist
 import time
+from .models import WorkerMemory
 
 
 class Worker:
@@ -136,7 +137,6 @@ if __name__ == "__main__":
     sys.path.append(BASE_DIR)
     django.setup()
     from news.models import Article, Category, Tags, TITLE_MAX_LENGTH, TAG_MAX_LENGTH
-    from models import WorkerMemory
     Worker().all()
 else:
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -144,5 +144,4 @@ else:
     sys.path.append(BASE_DIR)
     django.setup()
     from news.models import Article, Category, Tags, TITLE_MAX_LENGTH, TAG_MAX_LENGTH
-    from .models import WorkerMemory
 
