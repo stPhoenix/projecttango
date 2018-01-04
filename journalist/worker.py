@@ -8,7 +8,7 @@ from django.utils import timezone
 from bs4 import BeautifulSoup as bs4
 from django.db.models import ObjectDoesNotExist
 import time
-from .models import WorkerMemory
+from journalist.models import WorkerMemory
 
 
 class Worker:
