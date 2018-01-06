@@ -115,3 +115,7 @@ select.form-control:focus::-ms-value {
   color: #a50404;
   background-color: #fff;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
