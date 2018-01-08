@@ -1,6 +1,4 @@
 from django.core.management.base import BaseCommand, CommandError
-from django.core import management
-from multiprocessing import Process
 from journalist.worker import Worker
 
 
@@ -11,5 +9,4 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        worker = Process(target=Worker().all())
-        worker.start()
+        Worker().all()
