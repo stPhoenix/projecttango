@@ -30,8 +30,8 @@
             </a>
           </header>
           <nav class="row" aria-label="Navigation">
-            <section class="d-inline-flex col-md-12 justify-content-center justify-content-md-between flex-wrap">
-              <ul class="list-unstyled navbar navbar-expand h3 nav-scrolling">
+            <section class="d-inline-flex col-md-12 justify-content-center justify-content-lg-between flex-wrap flex-lg-nowrap">
+              <ul class="list-unstyled navbar navbar-expand h4 nav-scrolling">
                 <li class="nav-item">
                   <a href="{% url 'index' %}" class="border-bottom-line px-1">Home</a>
                 </li>
@@ -48,12 +48,29 @@
                   <a href="#" class="border-bottom-line px-1">Contact<nobr> Us </nobr></a>
                 </li>
               </ul>
-              <div class="d-flex mt-3 mb-4 border-bottom-line text-font h3 nav-scrolling">{% if user.is_authenticated %}
-                                                                                   Welcome {{user.username}} | <a href="{% url 'account:settings' user.pk %}"> Settings </a> | <a href="{% url 'logout'%}"> Log out</a>
-                                                                               {% else %}
-                                                                                   Welcome Guest | <a href="{% url 'login'%}"> Log in </a> | <a href="{% url 'account:sign_up'%}"> Sign up</a>
-                                                                              {% endif %}
-              </div>
+              <ul class="list-unstyled navbar navbar-expand h4 nav-scrolling">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a href="{% url 'index' %}" class="border-bottom-line px-1"><nobr>Welcome {{user.username}}</nobr></a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'account:settings' user.pk %}" class="border-bottom-line px-1">Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'logout'%}" class="border-bottom-line px-1"><nobr> Log out </nobr></a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'index' %}" class="border-bottom-line px-1"><nobr> Welcome Guest</nobr></a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'login'%}" class="border-bottom-line px-1"><nobr> Log in</nobr></a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'account:sign_up'%}" class="border-bottom-line px-1"><nobr> Sign up</nobr></a>
+                </li>
+                {% endif %}
+              </ul>
             </section>
           </nav>
           <main class="row justify-content-center mt-md-2">
