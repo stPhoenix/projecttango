@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'pybb',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-    'pybb.middleware.PybbMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -80,7 +77,6 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
-                'pybb.context_processors.processor',
             ],
         },
     },
