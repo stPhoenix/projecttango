@@ -20,14 +20,14 @@ class TimezoneMiddleware:
                 ip = x_forwarded_for.split(',')[0]
             else:
                 ip = request.META.get('REMOTE_ADDR')
-            freegeoip_response = requests.get('http://freegeoip.net/json/%s' % ip)
-            freegeoip_response_json = freegeoip_response.json()
-            user_time_zone = freegeoip_response_json['time_zone']
-            if user_time_zone:
+            timezoneapi_response = requests.get('https://timezoneapi.io/api/ip/?ip=%s' % ip)
+            timezoneapi_response_json = timezoneapi_response.json()
+            if int(timezoneapi_response_json['meta']['code']) == 200:
+                user_time_zone = timezoneapi_response_json['data']['timezone']['id']
+            if user_time_zone is not None or user_time_zone != '' or user_time_zone != ' ':
                 request.session['user_time_zone'] = user_time_zone
-        else:
-            user_time_zone = timezone.get_current_timezone()
-        timezone.activate(pytz.timezone(user_time_zone))
+
+        timezone.activate(pytz.timezone(str(user_time_zone)))
 
         response = self.get_response(request)
 
