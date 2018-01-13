@@ -97,6 +97,8 @@ select.form-control:focus::-ms-value {
   background-color: #fff;
 }
 
-::-webkit-scrollbar {
+.hidden-scrolling {
+  ::-webkit-scrollbar {
     display: none;
+}
 }
