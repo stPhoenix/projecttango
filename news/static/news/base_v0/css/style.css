@@ -102,3 +102,17 @@ select.form-control:focus::-ms-value {
     display: none;
 }
 }
+
+.text-white {
+  color: white;
+}
+
+.opacity-half {
+  opacity: 0.5;
+}
+
+.breadcrumb-red {
+   color: #ffffff;
+   background-color: #e40202;
+   opacity: 0.5;
+}
