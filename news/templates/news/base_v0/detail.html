@@ -4,6 +4,17 @@
 
 {% block title %} {{article.title}}PROJECT T.A.N.G.O. (game news) {% endblock %}
 
+{% block og_seo %}
+    <meta property="og:title" content="{{article.title}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{% url 'news:detail' article.id %}" />
+    <meta property="og:image" content="{{article.image_url}}" />
+    <meta property="article:published_time" content="{{article.pub_date}}" />
+    <meta property="article:section " content="{{article.category.name}}" />
+    {% for tag in article.tags_set.all %}
+    <meta property="article:tag" content="{{tag.tag}}" />
+    {% endfor %}
+{% endblock %}
 
 {% block main %}
 {% load static %}

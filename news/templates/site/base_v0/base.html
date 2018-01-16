@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
   {% load static %}
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'news/base_v0/favicon/apple-touch-icon.png' %}">
@@ -15,6 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{% block meta_description %} PROJECT T.A.N.G.O. (game news) - fast loading game news website {% endblock %}">
     <title> {% block title %} PROJECT T.A.N.G.O. (game news) - fast loading game news website {% endblock %}</title>
+    {% block og_seo %}
+      <meta property="og:title" content=" PROJECT T.A.N.G.O. (game news) - fast loading game news website" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{% url 'index' %}" />
+      <meta property="og:image" content="{% static 'news/base_v0/logo.jpg' %}" />
+  {% endblock %}
 </head>
 <body>
  <div class="container">
