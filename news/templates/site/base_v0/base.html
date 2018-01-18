@@ -80,7 +80,8 @@
               </ul>
             </section>
           </nav>
-          <main class="row justify-content-center mt-md-2">
+          <main class="row d-flex flex-column flex-lg-row justify-content-center mt-md-2">
+            <div class="col-12 col-lg-8">
             {% block main %}
             <section class="row justify-content-center">
             <div class="col-8 d-flex align-items-center">
@@ -131,6 +132,17 @@
               </nav>
               </div>
             </section>
+            {% endblock %}
+            </div>
+            {% block sidebar %}
+            <div class="col-12 col-lg-4 order-first order-lg-3">
+              <h5 class="border-red p-lg-1">
+                Welcome to Project T.A.N.G.O (game news)!
+                It's developed as fast-loading (almost without js or flash)
+                web site with game news!
+                Visit our about page for more details.
+              </h5>
+            </div>
             {% endblock %}
           </main>
           <footer class="row">
