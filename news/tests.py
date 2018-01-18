@@ -59,4 +59,21 @@ class CommentingTest(TestCase):
         self.assertContains(request, "You didn&#39;t enter text.")
 
 
+class AboutTest(TestCase):
+    def test_about_page(self):
+        response = self.client.get('/about/', follow=True)
+        rendered_html = render_to_string('site/' + TP + '/about.html')
+        self.assertEqual(200, response.status_code)
+        self.assertHTMLEqual(response.content.decode(), rendered_html)
+        self.assertTemplateUsed(response, 'site/' + TP + '/about.html')
+
+
+class ContactUsTest(TestCase):
+    def test_contact_us_page(self):
+        response = self.client.get('/contact_us/', follow=True)
+        rendered_html = render_to_string('site/' + TP + '/contact_us.html')
+        self.assertEqual(200, response.status_code)
+        self.assertHTMLEqual(response.content.decode(), rendered_html)
+        self.assertTemplateUsed(response, 'site/' + TP + '/contact_us.html')
+
 

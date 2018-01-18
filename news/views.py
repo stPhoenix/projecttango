@@ -76,3 +76,10 @@ def add_comment(request, article_id):
                 'error_message': "Can't add comment.",
             })
 
+
+def about(request):
+    return render(request, 'site/'+TP+'/about.html')
+
+
+def contact_us(request):
+    return render(request, 'site/' + TP + '/contact_us.html')
