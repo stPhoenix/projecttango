@@ -16,7 +16,7 @@ class LoginTest(TestCase):
 
 class SignUpTest(TestCase):
     def test_signup_page(self):
-        response = self.client.get('/account/sign_up')
+        response = self.client.get('/account/sign_up/')
         rendered_html = render_to_string('account/'+TP+'/sign_up.html')
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, 'account/'+TP+'/sign_up.html')
