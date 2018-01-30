@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
   {% load static %}
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'news/base_v0/favicon/apple-touch-icon.png' %}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'news/base_v0/favicon/favicon-32x32.png' %}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'news/base_v0/favicon/favicon-16x16.png' %}">
-  <link rel="manifest" href="{% static 'news/base_v0/favicon/manifest.json' %}">
-  <link rel="mask-icon" href="{% static 'news/base_v0/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
-  <meta name="theme-color" content="#ffffff">
-  <!-- Add bootstrap-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-   <link rel="stylesheet" href="{% static 'news/base_v0/css/style.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'news/base_v0/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'news/base_v0/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'news/base_v0/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'news/base_v0/favicon/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'news/base_v0/favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Add bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'news/base_v0/css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title> {% block title %} Home Page {% endblock %}</title>
+    <meta name="description" content="{% block meta_description %} PROJECT T.A.N.G.O. (game news) - fast loading game news website {% endblock %}">
+    <title> {% block title %} PROJECT T.A.N.G.O. (game news) - fast loading game news website {% endblock %}</title>
+    {% block og_seo %}
+      <meta property="og:title" content=" PROJECT T.A.N.G.O. (game news) - fast loading game news website" />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{% url 'index' %}" />
+      <meta property="og:image" content="{% static 'news/base_v0/logo.jpg' %}" />
+  {% endblock %}
 </head>
 <body>
  <div class="container">
@@ -39,13 +46,10 @@
                   <a href="#" class="border-bottom-line px-1">Forum</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="border-bottom-line px-1">Games</a>
+                  <a href="{% url 'about' %}" class="border-bottom-line px-1">About</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="border-bottom-line px-1">About</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="border-bottom-line px-1">Contact<nobr> Us </nobr></a>
+                  <a href="{% url 'contact_us' %}" class="border-bottom-line px-1">Contact<nobr> Us </nobr></a>
                 </li>
               </ul>
               <ul class="list-unstyled navbar navbar-expand h4 nav-scrolling">
@@ -73,7 +77,8 @@
               </ul>
             </section>
           </nav>
-          <main class="row justify-content-center mt-md-2">
+          <main class="row d-flex flex-column flex-lg-row justify-content-center mt-md-2">
+            <div class="col-12 col-lg-8">
             {% block main %}
             <section class="row justify-content-center">
             <div class="col-8 d-flex align-items-center">
@@ -125,10 +130,21 @@
               </div>
             </section>
             {% endblock %}
+            </div>
+            {% block sidebar %}
+            <div class="col-12 col-lg-4 order-first order-lg-3">
+              <h5 class="border-red p-lg-1">
+                Welcome to Project T.A.N.G.O (game news)!
+                It's developed as fast-loading (almost without js or flash)
+                web site with game news!
+                Visit our about page for more details.
+              </h5>
+            </div>
+            {% endblock %}
           </main>
           <footer class="row">
             <section class="col-12 col-md-12 d-flex align-items-start">
-              <p class="my-0">Copyright 2017 Project Tango</p>
+              <p class="my-0">Copyright 2017 Project Tango PROJECT T.A.N.G.O. (game news) - fast loading game news website</p>
             </section>
           </footer>
         </section>

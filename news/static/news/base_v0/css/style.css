@@ -116,3 +116,6 @@ select.form-control:focus::-ms-value {
    background-color: #e40202;
    opacity: 0.5;
 }
+.border-red {
+    border: 2px solid #e40202;
+}

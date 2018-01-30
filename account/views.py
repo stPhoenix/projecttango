@@ -77,11 +77,11 @@ def password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = passwordform(request.user)
-    return render(request, 'account/password.html', {'form': form})
+    return render(request, 'account/'+TP+'/password.html', {'form': form})
 
 
 def user_sign_up(request):
     user_form = UserForm()
-    return render(request, 'account/sign_up.html', {
+    return render(request, 'account/'+TP+'/sign_up.html', {
         'user_form': user_form
     })

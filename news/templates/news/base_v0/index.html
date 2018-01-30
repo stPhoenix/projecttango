@@ -1,17 +1,29 @@
 {% extends "../../site/base_v0/base.html" %}
 
-{% block title %} News Page {% endblock %}
+{% block meta_description %} News Page PROJECT T.A.N.G.O. (game news) - fast loading game news website {% endblock %}
+
+{% block title %} News Page PROJECT T.A.N.G.O. (game news) - fast loading game news website {% endblock %}
 
 {% block main %}
+{% load static %}
             <section class="row justify-content-start">
-            <div class="col-12 col-md-8 col-lg-8 d-flex align-items-center">
+            <div class="col-12 d-flex align-items-center">
               <ul class="list-unstyled">
                 {% for article in articles.all %}
                 <li>
-                  <article>
+                  <article itemscope itemtype="http://schema.org/Article">
+                      <div class="d-none" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                            <img src="{% static 'news/base_v0/logo.jpg' %}"/>
+                            <meta itemprop="url" content="{% static 'news/base_v0/logo.jpg' %}">
+                            <meta itemprop="width" content="1107">
+                            <meta itemprop="height" content="386">
+                        </div>
+                        <meta itemprop="name" content="PROJECT T.A.N.G.O. (game news)">
+                      </div>
                     <section class="row justify-content-center">
-                      <div class="col-12 d-flex flex-wrap text-center">
-                        <h5 class="my-0 border-bottom-line w-100"><a href="{% url 'news:detail' article.id %}">{{article.title}}</a></h5>
+                      <div class="col-12 d-flex flex-wrap text-center" itemprop="author" content="PROJECT T.A.N.G.O. (game news)">
+                        <h5 class="my-0 border-bottom-line w-100" itemprop="headline"><a itemprop="mainEntityOfPage" content="{% url 'news:detail' article.id %}" href="{% url 'news:detail' article.id %}">{{article.title}}</a></h5>
                       </div>
                     </section>
                     <section class="row">
@@ -20,14 +32,14 @@
                         <h6 class="p-1">Tags:{% for tag in article.tags_set.all %}
                             <a href="{% url 'news:filter' 'tag' tag.tag %}">{{ tag.tag }}</a>
                                                    {% endfor %}</h6>
-                        <h6 class="p-1 mr-auto">Comments:{{article.comment_set.count}}</h6>
-                        <h6 class="p-1 pr-3 pr-md-0">Pub_date:{{article.pub_date}}</h6>
+                        <h6 class="p-1 mr-auto" itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter" content="{{article.comment_set.count}}">Comments:{{article.comment_set.count}}</h6>
+                        <h6 class="p-1 pr-3 pr-md-0" itemprop="datePublished" content="{{article.pub_date}}">Pub_date:{{article.pub_date}}</h6>
                       </div>
                     </section>
                     <section class="row">
                       <div class="col-12 d-flex flex-column flex-wrap">
-                        <img class="img-fluid align-self-center w-75 border-img" src="{{article.image_url}}" alt="article image">
-                        <div class="mx-auto pl-1">{{article.article_text|safe|slice:"320"}}
+                        <img class="img-fluid align-self-center w-75 border-img" itemprop="image" src="{{article.image_url}}" alt="{{article.title}}">
+                        <div class="mx-auto pl-1" itemprop="description">{{article.article_text|safe|truncatechars_html:"160"}}
                            <br> <a href="{% url 'news:detail' article.id %}"> Continue read -></a>
                         </div>
                       </div>
