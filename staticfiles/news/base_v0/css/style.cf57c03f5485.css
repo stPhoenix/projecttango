@@ -1,0 +1,104 @@
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 470px) {
+  .nav-scrolling {
+    overflow: auto;
+   }
+}
+
+@media (min-width: 470px) and (max-width: 767px) {
+  .nav-scrolling {
+    overflow: auto;
+   }
+  .md-center {
+    -ms-flex-pack: center !important;
+        justify-content: center !important;
+    }
+  }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+    body {
+      background-color: #f3f2f2;
+      color: #e40202;
+    }
+
+    a {
+      color: #e40202;
+    }
+
+    a:hover {
+      color: #a50404;
+      text-decoration: none;
+    }
+
+    .border-bottom-line {
+      border-bottom: 2px solid #e40202;
+    }
+
+    .padding-top {
+      padding-top: 0.20rem;
+    }
+    .border-img {
+      border: 2px solid #e40202;
+    }
+    .width-10 {
+      width: 10% !important;
+    }
+    .page-link{
+    	color: #e40202;}
+    	.page-link:focus, .page-link:hover {
+    		color: #a50404;
+    		text-decoration: none;
+    		background-color: #e9ecef;
+    		border-color: #ddd; }
+
+    .btn-red {
+       color: #ffffff;
+       background-color: #e40202;
+    }
+    .btn-red:hover, .btn-red:focus {
+       background-color: #a50404;
+       border-color: #e40202;
+       box-shadow: 0 0 0 0.2rem rgba(255, 63, 63, 0.25);
+    }
+    .btn-social:hover {
+       -webkit-filter: opacity(0.45) drop-shadow(0 0 0 #a50404);
+       filter: opacity(0.45) drop-shadow(0 0 0 #a50404);
+    }
+    .text-height-13px {
+       font-size: 16px;
+    }
+
+.nav-scrolling {
+  overflow-x: auto;
+  overflow-y: hidden;
+   }
+.word-break{
+    word-break: break-all;
+    }
+.form-control:focus {
+  color: #a50404;
+  background-color: #fff;
+  border-color: #e40202;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(228, 2, 2, 0.25);
+}
+select.form-control:focus::-ms-value {
+  color: #a50404;
+  background-color: #fff;
+}
+
+.hidden-scrolling {
+  ::-webkit-scrollbar {
+    display: none;
+}
+}

@@ -1,0 +1,53 @@
+{% load i18n pybb_tags %}
+
+<div class="col-12 justify-content-center">
+  <h3 class="row justify-content-center justify-content-md-start px-md-4">{% trans 'Poll' %}</h3>
+  <table class="table justify-content-center">
+    <thead class="table justify-content-center">
+    <tr class="d-table justify-content-center">
+      <th colspan="2">
+        {{ topic.poll_question }}
+      </th>
+    </tr>
+    </thead>
+
+    <tbody class="justify-content-center">
+    {% if request.user.is_authenticated %}
+      {% if user|pybb_may_vote_in_topic:topic and topic|pybb_topic_poll_not_voted:request.user %}
+        <tr class="justify-content-center">
+          <td>
+            <form action="{% url 'pybb:topic_poll_vote' topic.pk %}" method="post">
+              {% include "pybb/form.html" with form=poll_form %}
+              <p class="submit row justify-content-center">{% include "pybb/_button_submit.html" %}</p>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        {% for answer in topic.poll_answers.all %}
+          <tr class="poll-answer">
+            <td>{{ answer }}</td>
+            <td>{{ answer.votes }} ({{ answer.votes_percent|floatformat:2 }} %)</td>
+          </tr>
+        {% endfor %}
+        {% if user|pybb_may_vote_in_topic:topic %}
+        <tr>
+          <td colspan="2">
+            <form action="{% url 'pybb:topic_cancel_poll_vote' pk=topic.pk %}" method="post">{% csrf_token %}
+              {% with submit_text=_('Cancel my poll vote') %}
+                <div class="row justify-content-center">{% include "pybb/_button_submit.html" %}</div>
+              {% endwith %}
+            </form>
+          </td>
+        </tr>
+        {% endif %}
+      {% endif %}
+    {% else %}
+      {% for answer in topic.poll_answers.all %}
+        <tr class="poll-answer">
+          <td colspan="2">{{ answer }}</td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>
