@@ -261,3 +261,6 @@ select.form-control:focus::-ms-value {
 
  }
 
+.border-red {
+    border: 2px solid #e40202;
+}
