@@ -21,13 +21,17 @@ class TimezoneMiddleware:
             else:
                 ip = request.META.get('REMOTE_ADDR')
             timezoneapi_response = requests.get('https://timezoneapi.io/api/ip/?ip=%s' % ip)
-            timezoneapi_response_json = timezoneapi_response.json()
-            if int(timezoneapi_response_json['meta']['code']) == 200:
-                user_time_zone = timezoneapi_response_json['data']['timezone']['id']
-            if user_time_zone is not None or user_time_zone != '' or user_time_zone != ' ':
-                request.session['user_time_zone'] = user_time_zone
+            try:
+                timezoneapi_response_json = timezoneapi_response.json()
+                if int(timezoneapi_response_json['meta']['code']) == 200:
+                    user_time_zone = timezoneapi_response_json['data']['timezone']['id']
+                if user_time_zone is not None or user_time_zone != '' or user_time_zone != ' ':
+                    request.session['user_time_zone'] = user_time_zone
+            except ValueError:
+                user_time_zone = timezone.get_current_timezone_name()
 
-        timezone.activate(pytz.timezone(str(user_time_zone)))
+            timezone.activate(pytz.timezone(str(user_time_zone)))
+
 
         response = self.get_response(request)
 
