@@ -1,0 +1,65 @@
+{% extends 'pybb/base.html' %}
+
+{% load pybb_tags i18n %}
+
+{% block title %}
+    {% pybb_get_profile target_user as target_profile %}
+    {{ target_profile.get_display_name }}
+{% endblock %}
+
+{% block content %}
+    {% pybb_get_profile target_user as target_profile %}
+    <h1 class="d-flex justify-content-md-center">{{ target_profile.get_display_name }}</h1>
+    <div class="userinfo col-md-12 align-items-md-center">
+        <div class="d-flex justify-content-md-center">{% include 'pybb/avatar.html' with user=target_user %}</div>
+        <dl class="dl-horizontal">
+          <div class="info">
+            <dt class="label py-2">{% trans 'Statistics:' %}</dt>
+              <dd>
+                <a href="{% url 'pybb:user_topics' target_user.get_username %}">
+                    {% blocktrans with count=topic_count %}Number of topics: {{ count }}{% endblocktrans %}
+                </a>
+              </dd>
+              <dd>
+                <a href="{% url 'pybb:user_posts' target_user.get_username %}">
+                    {% blocktrans with count=target_profile.post_count %}Number of posts: {{ count }}{% endblocktrans %}
+                </a>
+              </dd>
+              <dd>
+                {% pybb_get_time target_user.date_joined as date_joined %}
+                {% blocktrans %}Date of registration: {{ date_joined }} {% endblocktrans %}
+              </dd>
+          </div>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <div class="controls col-md-12 justify-content-md-center">
+        {% if request.user|pybb_may_manage_moderators %}
+          <div class="d-flex justify-content-md-center py-1">
+            <a href="{% url 'pybb:edit_privileges' target_user.get_username %}" class="col-md-12 row justify-content-md-center h5">{% trans 'Moderator' %}</a>
+          </div>
+        {% endif %}
+        {% if target_user.id == user.id %}
+            <div class="col-md-12 justify-content-md-center">
+                <a href="{% url 'pybb:edit_profile' %}" class="d-flex justify-content-md-center py-1 h5">{% trans 'Edit' %}</a>
+            </div>
+        {% endif %}
+        {% if perms.pybb.block_users %}
+            {% if target_user.is_active %}
+                <form action="{% url 'pybb:block_user' target_user.get_username %}" method="post" class="col-md-12 justify-content-md-center">{% csrf_token %}
+                    <div class="d-flex justify-content-md-center py-1">
+                        <button type="submit" class="btn btn-red">{% trans 'Block' %}</button>
+                    </div>
+                    <div class="d-flex justify-content-md-center py-1">
+                        <button type="submit" name="block_and_delete_messages" class="btn btn-red">{% trans 'Block and delete all messages' %}</button>
+                    </div>
+                </form>
+            {% else %}
+                <form action="{% url 'pybb:unblock_user' target_user.get_username %}" method="post">{% csrf_token %}
+                    <button type="submit">{% trans 'Unblock' %}</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load pybb_tags i18n %}
+
+{% if forum_list %}
+    <table class="table d-flex flex-column d-md-table {% if category %}category-table{% elif parent_forum %}child-forums-table{% endif %} col-md-12 p-0">
+        <thead>
+            <tr class="forum-row head-row">
+                <th class="forum-name col p-2">
+                    {% trans 'Forum' %}
+                </th>
+                <th class="forum-topic-count col p-2">
+                    {% trans 'Topics' %}
+                </th>
+                <th class="forum-post-count col p-2">
+                    {% trans 'Posts' %}
+                </th>
+                <th class="forum-last-post col p-2 px-md-5">
+                    {% trans 'Last posts' %}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for forum in forum_list|pybb_forum_unread:user %}
+            <tr class="forum-row">
+                <td class="forum-name {% if forum.unread %} forum-unread{% endif %} col p-2">
+                    <a href="{{ forum.get_absolute_url }}">{{ forum.name }}</a> {% if forum.hidden %}[{% trans 'Hidden' %}]{% endif %}
+                    <div class="forum-description">
+                        {{ forum.description|safe }}
+                    </div>
+                </td>
+                <td class="forum-topic-count col p-2">
+                    {{ forum.topic_count }}
+                </td>
+                <td class="forum-post-count col p-2">
+                    {{ forum.post_count }}
+                </td>
+                <td class="forum-last-post col p-2 px-md-0">
+                    {% include "pybb/forum_last_update_info.html" %}
+                </td>
+            </tr>
+        {% empty %}
+            {% if category %}
+                <h3 class="row justify-content-center">{% trans 'No forums created' %}</h3>
+                <a href="{% url 'admin:pybb_forum_add' %}">{% trans 'Add forum now' %}</a>
+            {%  endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

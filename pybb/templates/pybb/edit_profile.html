@@ -1,0 +1,30 @@
+{% extends 'pybb/base.html' %}
+
+{% load i18n pybb_tags %}
+
+{% block title %}{% trans 'Profile editing' %}{% endblock title %}
+
+{% block content %}
+    <h2 class="row justify-content-center">{% trans 'Profile editing' %}</h2>
+    <div class="row justify-content-center">{% include 'pybb/avatar.html' with user=user %}</div>
+    <form method="post" enctype="multipart/form-data" class="profile-edit row justify-content-center">
+        {% csrf_token %}
+        <fieldset>
+            <legend>{% trans 'Profile editing' %}</legend>
+            {% include "pybb/form.html" %}
+            <p class="row justify-content-center py-2">{% include "pybb/_button_save.html" %}</p>
+        </fieldset>
+    </form>
+    <h2 class="d-flex justify-content-center">{% trans 'Subscriptions on topics' %}</h2>
+    <ul class="list-unstyled col-12">
+        {% for sub in user.subscriptions.all %}
+            <li class="col-12 row justify-content-center">
+                {% pybb_link sub %}
+                &mdash;
+                <strong>
+                    <a href="{% url 'pybb:delete_subscription' sub.id %}">{% trans 'delete' %}</a>
+                </strong>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

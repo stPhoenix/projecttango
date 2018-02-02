@@ -1,0 +1,5 @@
+{% load i18n %}
+<div class="row justify-content-center h5">
+    <a href="{% url 'login'%}" class="border-bottom-line">{% trans 'Log in' %}</a> {% trans "&ensp;or&ensp;" %}
+    <a href="{% url 'account:sign_up'%}" class="border-bottom-line">{% trans 'Sign up' %}</a> {% trans '&ensp;to create to post a reply' %}
+</div>
