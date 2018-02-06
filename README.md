@@ -1,5 +1,5 @@
 # Project T.A.N.G.O. (game news)
-## http://game-news.tk
+## http://game-news.tk (https://projecttango.herokuapp.com/)
 [![Build Status](https://travis-ci.org/stPhoenix/projecttango.svg?branch=master)](https://travis-ci.org/stPhoenix/projecttango)
 
 ### Hi
