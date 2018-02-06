@@ -1,0 +1,6 @@
+background-color = f3f2f2
+text color = e40202
+hover link = a50404
+
+logo font =  Pollock3CTT
+text font =  Agency FB
